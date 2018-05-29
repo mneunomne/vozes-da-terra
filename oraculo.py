@@ -6,7 +6,7 @@ import sys
 import random
 import glob, os
 
-try:
+try: 
 
    energy_threshold = 65
    duration = 5000 # seconds
@@ -32,12 +32,16 @@ try:
    channels = asource.get_channels()
    chunk = 1024
 
+   print(sample_width, sample_rate)
+   
    validator = AudioEnergyValidator(sample_width=sample_width, energy_threshold = energy_threshold)
    tokenizer = StreamTokenizer(validator=validator, min_length=70, max_length=20000, max_continuous_silence=100)
 
-   player = player_for(asource)
-
-   p = pyaudio.PyAudio()   
+   p = pyaudio.PyAudio()
+   
+   for i in range(p.get_device_count()):
+    dev = p.get_device_info_by_index(i)
+    print((i,dev['name'],dev['maxInputChannels']))
 
    def savefile(data, start, end):
       print('-----------------------')
@@ -52,7 +56,9 @@ try:
       playrandom()
 
 
-   def playrandom():           
+   def playrandom():       
+      asource.close()
+      print('input muted')    
       # get random file from folder
       filename = random.choice(glob.glob("*.wav"))
       wave_player = wave.open(filename, 'rb')
@@ -63,7 +69,7 @@ try:
             channels = channels,
             rate = sample_rate,
             output = True)
-      print('playing: ' + filename)
+      print('playing: ' + filename)      
       # read all file 
       while len(data) > 0:
             stream.write(data)
@@ -71,6 +77,8 @@ try:
       else:          
          stream.close()
          wave_player.close()
+         print('input unmuted')
+         asource.open()
          print('-----------------------')
 
    asource.open()
@@ -80,11 +88,9 @@ try:
    tokenizer.tokenize(asource, callback=savefile)
 
    asource.close()
-   player.stop()
 
 except KeyboardInterrupt:
 
-   player.stop()
    asource.close()
    sys.exit(0)
 
