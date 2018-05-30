@@ -13,6 +13,7 @@ try:
    FORMAT = pyaudio.paInt16
    CHANNELS = 2
    # RATE = 44100
+   sample_rate = 48000 
    CHUNK = 1024
    RECORD_SECONDS = 5000
 
@@ -24,10 +25,10 @@ try:
 
    # record = True so that we'll be able to rewind the source.
    # max_time = 10: read 10 seconds from the microphone
-   asource = ADSFactory.ads(record=True, max_time = duration)
+   asource = ADSFactory.ads(record=True, max_time = duration, sampling_rate = sample_rate)
 
    # params 
-   sample_rate = asource.get_sampling_rate()
+   # sample_rate = asource.get_sampling_rate()
    sample_width = asource.get_sample_width()
    channels = asource.get_channels()
    chunk = 1024
@@ -53,14 +54,14 @@ try:
       waveFile.setframerate(channels)
       waveFile.writeframes(b''.join(data))
       waveFile.close()
-      playrandom()
+      playrandom(filename)
 
 
-   def playrandom():       
+   def playrandom(filename):       
       asource.close()
       print('input muted')    
       # get random file from folder
-      filename = random.choice(glob.glob("*.wav"))
+      # filename = random.choice(glob.glob("*.wav"))
       wave_player = wave.open(filename, 'rb')
       data = wave_player.readframes(chunk)
       # open stream to play audio 
@@ -70,7 +71,7 @@ try:
             rate = sample_rate,
             output = True)
       print('playing: ' + filename)      
-      # read all file 
+      # read all file     
       while len(data) > 0:
             stream.write(data)
             data = wave_player.readframes(chunk)            
@@ -98,3 +99,4 @@ except Exception as e:
    
    sys.stderr.write(str(e) + "\n")
    sys.exit(1)
+                               
