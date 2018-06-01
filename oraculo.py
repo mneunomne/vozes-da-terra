@@ -10,10 +10,9 @@ import platform
 import speech_recognition as sr
 import asyncio
 import _thread
-import os.path
-import json
 import uuid
 import datetime
+import memoria
 
 try: 
    # DEFAULT VALUES
@@ -50,32 +49,16 @@ try:
    print(sample_width, sample_rate)
    
    validator = AudioEnergyValidator(sample_width=sample_width, energy_threshold = energy_threshold)
-   tokenizer = StreamTokenizer(validator=validator, min_length=80, max_length=RECORD_SECONDS, max_continuous_silence=400, mode = StreamTokenizer.DROP_TRAILING_SILENCE) #  
+   tokenizer = StreamTokenizer(validator=validator, min_length=80, max_length=RECORD_SECONDS, max_continuous_silence=150) #  
 
    p = pyaudio.PyAudio()
+   _memoria = memoria.Memoria()
 
    def init():
-      if os.path.exists('data.json'): 
-         setDataFile()      
-      else:
-         createDataFile()
       asource.open()
       print("\n  ** Make some noise (dur:{}, energy:{})...".format(duration, energy_threshold))
       tokenizer.tokenize(asource, callback=savefile)
       asource.close() 
-
-   def createDataFile():
-      # check if file exists      
-      with open(DATA_FILE_PATH) as f:
-         json.dump([], f)   
-
-   def setDataFile():     
-      with open(DATA_FILE_PATH, 'rb') as f:     
-         try:
-            data = json.load(f)
-            print('file ok', data)
-         except:            
-            print('unable to open file')            
 
    def test(params, aloha):
       print(params, aloha)
@@ -100,43 +83,41 @@ try:
       waveFile.setframerate(sample_rate)
       waveFile.writeframes(b''.join(data))
       waveFile.close()
-      # salvar arquivo como data no data.json   
-      saveToData(filename, start, end)
-
+      # salvar arquivo como data no data.json 
+      audio_id = str(uuid.uuid4()) 
+      saveToData(filename, start, end, audio_id)      
       # play next file
       playfile(filename)            
 
-   def saveToData(filename, start, end):
+   def saveToData(filename, start, end, audio_id):
       # calculate length in milsec 1s = 100
       length = end - start
       # get timestamp 
       timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
-      # start process of analyzing audio ... (async)
-      # thread(analyze_audio, [filename, None])
+      
+      # start process of analyzing audio ... (async)      
+      thread(analyze_audio, [filename, audio_id])
+      
       audio_data = {
+                     "id": audio_id,
                      "filename": filename,
                      "timestamp": timestamp,
                      "length": length,
                      "text": "",
                      "tags": []           
-                  }
+                  }         
+      _memoria.append(audio_data)  
 
-      data = []
-      with open(DATA_FILE_PATH,"rb") as f:
-         data = json.load(f)
-      
-      with open(DATA_FILE_PATH,"w") as f:         
-         data.append(audio_data)
-         json.dump(data, f, indent=4, sort_keys=True)
-         print(data)
-
-   def analyze_audio(filename, _ = "_"):      
-      r = sr.Recognizer("ru")
+   def analyze_audio(filename, audio_id):      
+      r = sr.Recognizer("pt-BR")
       print("reading file", filename)
       with sr.WavFile(filename) as source:              # use "test.wav" as the audio source
           audio = r.record(source)                        # extract audio data from the file
       try:
-          print("Transcription: " + r.recognize(audio))   # recognize speech using Google Speech Recognition
+         print("Transcription: " + r.recognize(audio))   # recognize speech using Google Speech Recognition         
+         text = r.recognize(audio)
+         _memoria.set(audio_id, "text", text) 
+
       except LookupError:                                 # speech is unintelligible
           print("Could not understand audio")  
     
