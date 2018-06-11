@@ -4,5 +4,5 @@ test:
 	python3 oraculo.py
 
 clear:
-	rm *.wav
 	rm data.json
+	rm *.wav	
