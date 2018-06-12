@@ -1,3 +1,7 @@
+# 	
+# 	Classe para administrar dados coletados
+# 	
+
 import json
 import os.path
 
