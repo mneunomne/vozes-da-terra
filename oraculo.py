@@ -17,39 +17,42 @@ import memoria
 from pydub import AudioSegment
 import nltk    
 from nltk import tokenize
+from argparse import ArgumentParser
 
+parser = ArgumentParser()
+parser.add_argument("-m", "--modo", dest="modo",
+                    help="Modo de funcionamento", default="simples")
+parser.add_argument("-r", "--rate", dest="sampling_rate", 
+                     default=48000, help="sampling rate")
 
-SERVER_URL  = 'aurora.webfactional.com'
-SERVER_PATH = 'webapps/vozes_da_terra/data'
-USERNAME    = 'aurora'
-PASSWORD    = 'matrizes33'
+args = parser.parse_args()
 
-
+# parametros de funcionamento
+MODO = args.modo
 DEBUG = False
 SAVE_FILES = False
 UPLOAD_TO_SERVER = False
 TRANSCRIPTION = True
 
-try:
-   # DEFAULT VALUES
-   energy_threshold = 52
-   duration = 5000 # seconds
-   FORMAT = pyaudio.paInt16
-   CHANNELS = 2
-   RATE = 48000
-   sample_rate = RATE
-   CHUNK = 1024
-   chunk = CHUNK
-   RECORD_SECONDS = 5000   
+# parametros para bando de dados
+SERVER_URL     = 'aurora.webfactional.com'
+SERVER_PATH    = 'webapps/vozes_da_terra/data'
+USERNAME       = 'aurora'
+PASSWORD       = 'matrizes33'
+DATA_FILE_PATH = 'data.json'
 
-   DATA_FILE_PATH = 'data.json'
+# parametros de áudio
+energy_threshold = 52
+duration = 5000 # seconds
+FORMAT = pyaudio.paInt16
+CHANNELS = 2
+RATE = 48000
+sample_rate = RATE
+CHUNK = 1024
+chunk = CHUNK
+RECORD_SECONDS = 5000
 
-   if len(sys.argv) > 1:
-     energy_threshold = float(sys.argv[1])
-
-   if len(sys.argv) > 2:
-     duration = float(sys.argv[2])
-
+try:      
    # set up audio source  
    asource = ADSFactory.ads(record=True, max_time = duration)
 
@@ -154,7 +157,7 @@ try:
       audio_id = str(uuid.uuid4()) 
       saveToData(filename, start, end, audio_id)      
       # play next file
-      playfile(filename)
+      playfile(filename, audio_id)
 
    def saveToData(filename, start, end, audio_id):
       # calculate length in milsec 1s = 100
@@ -176,7 +179,8 @@ try:
                      "length": length,
                      "text": "",
                      "server_path": SERVER_URL + SERVER_PATH,
-                     "stemms": []
+                     "stemms": [],
+                     "last_played": timestamp
                   }         
       _memoria.append(audio_data)
 
@@ -198,7 +202,7 @@ try:
       print('text', text)
       tokens = tokenize.word_tokenize(text, language='portuguese')    
       stemms = [stemmer.stem(i) for i in tokens if i not in stop_words]
-      print('tokens', tokens)    
+      print('stemms', stemms)    
       _memoria.set(audio_id, "stemms", stemms)
       
 
@@ -217,9 +221,11 @@ try:
    def getAudioToPlay(filename):
       return filename
 
-   def playfile(filename):    
-      asource.close()
+   def playfile(filename, audio_id = 0):    
+      asource.close()      
       print('input muted')
+      timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
+      _memoria.set(audio_id, "last_played", timestamp)      
       # get random file from folder
       # filename = random.choice(glob.glob("*.wav"))
       wave_player = wave.open(filename, 'rb')
