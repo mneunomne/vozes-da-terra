@@ -6,7 +6,7 @@ import time
 import random
 import glob, os
 import platform
-import speech_recognition as sr
+giimport speech_recognition as sr
 import asyncio
 import _thread
 import uuid
