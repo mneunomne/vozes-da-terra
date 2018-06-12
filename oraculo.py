@@ -28,7 +28,7 @@ PASSWORD    = 'matrizes33'
 DEBUG = False
 SAVE_FILES = False
 UPLOAD_TO_SERVER = False
-TRANSCRIPTION = True
+TRANSCRIPTION = False
 
 try:
    # DEFAULT VALUES
@@ -51,7 +51,7 @@ try:
      duration = float(sys.argv[2])
 
    # set up audio source  
-   asource = ADSFactory.ads(record=True, max_time = duration)
+   asource = ADSFactory.ads(record=True, max_time = duration, sampling_rate = sample_rate)
 
    #check os system and set sample rate 48000 for Linux (Raspberry Pi)
    _os = platform.system()
