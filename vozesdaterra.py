@@ -65,7 +65,7 @@ RECORD_SECONDS = 1000
 
 try:      
    # set up audio source  
-   asource = ADSFactory.ads(record=True, max_time = duration)
+   asource = ADSFactory.ads(record=True, max_time = duration, sampling_rate = sample_rate)
 
    #check os system and set sample rate 48000 for Linux (Raspberry Pi)
    _os = platform.system()
