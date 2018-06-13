@@ -31,6 +31,8 @@ parser.add_argument("-D", "--DEBUG", dest="DEBUG",
                      default=False, help="energy threshold for auditok")
 parser.add_argument("-j", "--json_file_path", dest="data_file", 
                      default='data.json', help="destination data file")
+parser.add_argument("-d", "--duration", dest="duration", 
+                     default=1000, help="mac file duration in 0.01 sec")
 args = parser.parse_args()
 
 # parametros de funcionamento
@@ -50,13 +52,11 @@ DATA_FILE_PATH =  args.data_file
 
 # parametros de áudio
 energy_threshold = int(args.threshold)
-duration = 500 # seconds
+duration = int(args.duration) # seconds
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
-sample_rate = args.sampling_rate
-CHUNK = 1024
-chunk = CHUNK
-RECORD_SECONDS = 500
+sample_rate = int(args.sampling_rate)
+chunk = 1024
 
 try:      
    # set up audio source  
@@ -73,7 +73,7 @@ try:
    
    # START VALIDATOR
    validator = AudioEnergyValidator(sample_width=sample_width, energy_threshold = energy_threshold)
-   tokenizer = StreamTokenizer(validator=validator, min_length=80, max_length=RECORD_SECONDS, max_continuous_silence=300) #  
+   tokenizer = StreamTokenizer(validator=validator, min_length=120, max_length=duration, max_continuous_silence=80) #  
 
    # LOAD PYAUDIO 
    p = pyaudio.PyAudio()
@@ -153,7 +153,7 @@ try:
 
       # normalize volume
       sound = AudioSegment.from_file(filename, "wav")
-      normalized_sound = match_target_amplitude(sound, -10.0)
+      normalized_sound = match_target_amplitude(sound, -5.0)
       normalized_sound.export(filename, format="wav")
 
       # salvar arquivo como data no data.json 
