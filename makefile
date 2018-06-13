@@ -1,7 +1,7 @@
 .PHONY: test upload clean bootstrap
 
 test:
-	python3 oraculo.py
+	python3 vozesdaterra.py
 
 clear:
 	rm data.json
