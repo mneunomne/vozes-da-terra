@@ -31,17 +31,20 @@ parser.add_argument("-D", "--DEBUG", dest="DEBUG",
                      default=False, help="energy threshold for auditok")
 parser.add_argument("-j", "--json_file_path", dest="data_file", 
                      default='data.json', help="destination data file")
-parser.add_argument("-d", "--duration", dest="duration", 
-                     default=1000, help="mac file duration in 0.01 sec")
+parser.add_argument("-a", "--audio_folder", dest="audio_folder", 
+                     default='audios/', help="local folder where files are saved")
 args = parser.parse_args()
 
 # parametros de funcionamento
 MODO = args.modo
 DEBUG = args.DEBUG
 
-SAVE_FILES = False
-UPLOAD_TO_SERVER = False
+SAVE_FILES = True
+UPLOAD_TO_SERVER = True
 TRANSCRIPTION = True
+
+# local audio storage folder 
+audio_folder = args.audio_folder
 
 # parametros para bando de dados
 SERVER_URL     = 'aurora.webfactional.com'
@@ -51,16 +54,18 @@ PASSWORD       = 'matrizes33'
 DATA_FILE_PATH =  args.data_file
 
 # parametros de áudio
-energy_threshold = int(args.threshold)
-duration = int(args.duration) # seconds
+energy_threshold = args.threshold
+duration = 1000 # seconds
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
-sample_rate = int(args.sampling_rate)
-chunk = 1024
+sample_rate = args.sampling_rate
+CHUNK = 1024
+chunk = CHUNK
+RECORD_SECONDS = 1000
 
 try:      
    # set up audio source  
-   asource = ADSFactory.ads(record=True, max_time = duration, sampling_rate = sample_rate)
+   asource = ADSFactory.ads(record=True, max_time = duration)
 
    #check os system and set sample rate 48000 for Linux (Raspberry Pi)
    _os = platform.system()
@@ -73,7 +78,7 @@ try:
    
    # START VALIDATOR
    validator = AudioEnergyValidator(sample_width=sample_width, energy_threshold = energy_threshold)
-   tokenizer = StreamTokenizer(validator=validator, min_length=120, max_length=duration, max_continuous_silence=80) #  
+   tokenizer = StreamTokenizer(validator=validator, min_length=150, max_length=RECORD_SECONDS, max_continuous_silence=100) #  
 
    # LOAD PYAUDIO 
    p = pyaudio.PyAudio()
@@ -135,7 +140,7 @@ try:
 
    def savefile(data, start, end):      
       print("Acoustic activity at: {0}--{1}".format(start, end))        
-      filename = "audios/teste_{0}_{1}.wav".format(start, end)      
+      filename = audio_folder + "teste_{0}_{1}.wav".format(start, end)      
       # create folder if 'audios' doesnt exist
       if not os.path.exists(os.path.dirname(filename)):
           try:
@@ -153,7 +158,7 @@ try:
 
       # normalize volume
       sound = AudioSegment.from_file(filename, "wav")
-      normalized_sound = match_target_amplitude(sound, -5.0)
+      normalized_sound = match_target_amplitude(sound, -30.0)
       normalized_sound.export(filename, format="wav")
 
       # salvar arquivo como data no data.json 
@@ -169,21 +174,16 @@ try:
          # play next file
          playfile(filename, audio_id)      
       elif MODO   == 'prolongado':
-          print(MODO)
          # ... restart silence interval counter
-        
+         print('prolongado...')
+
    def saveToData(filename, start, end, audio_id):
       # calculate length in milsec 1s = 100
       length = end - start
       # get timestamp 
-      timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
-      
+      timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())      
       # start process of analyzing audio ... (async)      
-      thread(analyze_audio, [filename, audio_id])
-
-      # upload file to server
-      if UPLOAD_TO_SERVER:
-         thread(upload, [filename, audio_id])
+      thread(analyze_audio, [filename, audio_id])      
       # data structure
       audio_data = {
                      "id": audio_id,
@@ -195,7 +195,10 @@ try:
                      "stemms": [],
                      "last_played": timestamp
                   }         
-      _memoria.append(audio_data)
+      _memoria.append(audio_data)      
+      # upload file to server
+      if UPLOAD_TO_SERVER:
+         thread(upload, [filename, audio_id])
 
 
    def analyze_audio(filename, audio_id):       
@@ -219,17 +222,20 @@ try:
       _memoria.set(audio_id, "stemms", stemms)
       
 
-   def upload(filename, audio_data):
+   def upload(filename, audio_id):
       session = ftplib.FTP(SERVER_URL, USERNAME, PASSWORD)
-      # print('started ' + SERVER_URL + ' session' )      
+      print('started ' + SERVER_URL + ' session' )      
       session.cwd(SERVER_PATH)
       file = open(filename,'rb')                       # file to send
-      session.storbinary('STOR ' + filename, file)     # send the file
+      session.storbinary('STOR ' + audio_id + '.wav', file)     # send the file
       print('file saved in server')
-      # print(session.pwd(), ftplib.FTP.dir(session))
-      file.close()                                     # close file and FTP
+      # update cloud db
+      _memoria.onFileUploaded(audio_id)
+      # close file and FTP
+      file.close()
       session.quit()
       print('end session')
+
 
    def getAudioToPlay(filename):
       return filename
@@ -260,10 +266,6 @@ try:
          print('input unmuted')
          asource.open()
          print('-----------------------')      
-
-
-   # def get_next_audio():
-
 
    def match_target_amplitude(sound, target_dBFS):
       change_in_dBFS = target_dBFS - sound.dBFS

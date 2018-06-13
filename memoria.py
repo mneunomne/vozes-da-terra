@@ -4,6 +4,8 @@
 
 import json
 import os.path
+from firebase import firebase
+firebase = firebase.FirebaseApplication('https://vozes-da-terra.firebaseio.com/', None)
 
 class Memoria:		
 	def __init__(self, datafile= "data.json"):
@@ -30,6 +32,11 @@ class Memoria:
 	def read_file(self):
 		print('read')
 
+	def onFileUploaded(self, audio_id):
+		audio_data = self._get_from_id(audio_id)
+		result_post = firebase.post('/teste', audio_data)
+		print('result', result_post)
+
 	def append(self, new_data):
 		with open(self.datafile,"rb") as f:
 			try:
@@ -47,6 +54,11 @@ class Memoria:
 
 	def get(self):
 		return self.data
+
+	def _get_from_id(self, audio_id):
+		for i in range(len(self.data)):
+			if self.data[i]["id"] == audio_id:				
+				return self.data[i]
 
 	def set(self, audio_id, key, val):
 		for i in range(len(self.data)):
