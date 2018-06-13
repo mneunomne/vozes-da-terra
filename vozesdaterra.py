@@ -49,18 +49,18 @@ PASSWORD       = 'matrizes33'
 DATA_FILE_PATH =  args.data_file
 
 # parametros de áudio
-energy_threshold = args.threshold
-duration = 5000 # seconds
+energy_threshold = int(args.threshold)
+duration = 500 # seconds
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
 sample_rate = args.sampling_rate
 CHUNK = 1024
 chunk = CHUNK
-RECORD_SECONDS = 5000
+RECORD_SECONDS = 500
 
 try:      
    # set up audio source  
-   asource = ADSFactory.ads(record=True, max_time = duration)
+   asource = ADSFactory.ads(record=True, max_time = duration, sampling_rate = sample_rate)
 
    #check os system and set sample rate 48000 for Linux (Raspberry Pi)
    _os = platform.system()
@@ -153,7 +153,7 @@ try:
 
       # normalize volume
       sound = AudioSegment.from_file(filename, "wav")
-      normalized_sound = match_target_amplitude(sound, -30.0)
+      normalized_sound = match_target_amplitude(sound, -10.0)
       normalized_sound.export(filename, format="wav")
 
       # salvar arquivo como data no data.json 
@@ -169,8 +169,9 @@ try:
          # play next file
          playfile(filename, audio_id)      
       elif MODO   == 'prolongado':
+          print(MODO)
          # ... restart silence interval counter
-
+        
    def saveToData(filename, start, end, audio_id):
       # calculate length in milsec 1s = 100
       length = end - start
@@ -261,7 +262,7 @@ try:
          print('-----------------------')      
 
 
-   def get_next_audio():
+   # def get_next_audio():
 
 
    def match_target_amplitude(sound, target_dBFS):
