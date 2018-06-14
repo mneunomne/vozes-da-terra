@@ -35,12 +35,17 @@ parser.add_argument("-a", "--audio_folder", dest="audio_folder",
                      default='audios/', help="local folder where files are saved")
 args = parser.parse_args()
 
+
+INTELIGENCIA = True
+
+TESTE = True
+
 # parametros de funcionamento
 MODO = args.modo
 DEBUG = args.DEBUG
 
 SAVE_FILES = True
-UPLOAD_TO_SERVER = True
+UPLOAD_TO_SERVER = False
 TRANSCRIPTION = True
 
 # local audio storage folder 
@@ -54,16 +59,16 @@ PASSWORD       = 'matrizes33'
 DATA_FILE_PATH =  args.data_file
 
 # parametros de áudio
-energy_threshold = args.threshold
-duration = 1000 # seconds
+energy_threshold = int(args.threshold)
+duration = 10000 # seconds
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
 sample_rate = args.sampling_rate
 CHUNK = 1024
 chunk = CHUNK
-RECORD_SECONDS = 1000
+RECORD_SECONDS = 10000
 
-try:      
+try:
    # set up audio source  
    asource = ADSFactory.ads(record=True, max_time = duration)
 
@@ -78,7 +83,7 @@ try:
    
    # START VALIDATOR
    validator = AudioEnergyValidator(sample_width=sample_width, energy_threshold = energy_threshold)
-   tokenizer = StreamTokenizer(validator=validator, min_length=150, max_length=RECORD_SECONDS, max_continuous_silence=100) #  
+   tokenizer = StreamTokenizer(validator=validator, min_length=150, max_length=RECORD_SECONDS, max_continuous_silence=200) #  
 
    # LOAD PYAUDIO 
    p = pyaudio.PyAudio()
@@ -106,15 +111,6 @@ try:
       tokenizer.tokenize(asource, callback=savefile)
       thread(escutar, [0,0])
       asource.close()       
-
-   def listen(recognizer, audio):              # this is called from the background thread
-      try:
-         # received audio data, now need to recognize it
-         input_text(recognizer.recognize(audio, True))
-      except LookupError:
-         print("???")
-      r = sr.Recognizer()
-      r.listen_in_background(sr.Microphone(), callback)
 
    def input_text(list):
       for prediction in list:
@@ -159,7 +155,10 @@ try:
       # normalize volume
       sound = AudioSegment.from_file(filename, "wav")
       normalized_sound = match_target_amplitude(sound, -30.0)
-      normalized_sound.export(filename, format="wav")
+
+      with_fade = normalized_sound.fade_in(200).fade_out(200)
+
+      with_fade.export(filename, format="wav")
 
       # salvar arquivo como data no data.json 
       audio_id = str(uuid.uuid4()) 
@@ -168,14 +167,6 @@ try:
       # diferentes comportamentos ocorrem 
       # ao novo áudio ser gravado. 
       onNewAudio(filename, audio_id)
-
-   def onNewAudio(filename, audio_id):
-      if MODO     == 'simples':
-         # play next file
-         playfile(filename, audio_id)      
-      elif MODO   == 'prolongado':
-         # ... restart silence interval counter
-         print('prolongado...')
 
    def saveToData(filename, start, end, audio_id):
       # calculate length in milsec 1s = 100
@@ -209,6 +200,8 @@ try:
          print("Transcription: " + recognizer.recognize(audio))   # recognize speech using Google Speech Recognition         
          text = recognizer.recognize(audio)
          _memoria.set(audio_id, "text", text)
+         # update cloud db
+         _memoria.onFileUploaded(audio_id)
          thread(stemm_text, [text, audio_id])
       except LookupError:                                 # speech is unintelligible
           print("Could not understand audio")  
@@ -228,9 +221,7 @@ try:
       session.cwd(SERVER_PATH)
       file = open(filename,'rb')                       # file to send
       session.storbinary('STOR ' + audio_id + '.wav', file)     # send the file
-      print('file saved in server')
-      # update cloud db
-      _memoria.onFileUploaded(audio_id)
+      print('file saved in server')      
       # close file and FTP
       file.close()
       session.quit()
@@ -270,6 +261,21 @@ try:
    def match_target_amplitude(sound, target_dBFS):
       change_in_dBFS = target_dBFS - sound.dBFS
       return sound.apply_gain(change_in_dBFS)
+
+#
+#  Oraculo, 
+#  Comportamento para o próximo áudio 
+#
+
+   def onNewAudio(filename, audio_id):
+      if(INTELIGENCIA):
+         print('prolongado...')
+         next_audio = _memoria.getNext(audio_id)
+         print(next_audio['text'])
+         playfile(next_audio['filename'], next_audio['id'])
+      else:
+         playfile(filename, audio_id)
+
 
    # Start
    init()

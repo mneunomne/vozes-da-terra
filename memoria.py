@@ -3,6 +3,7 @@
 # 	
 
 import json
+import numpy
 import os.path
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://vozes-da-terra.firebaseio.com/', None)
@@ -64,5 +65,31 @@ class Memoria:
 		for i in range(len(self.data)):
 			if self.data[i]["id"] == audio_id:
 				self.data[i][key] = val
-				self.write(self.data)	
+				self.write(self.data)
+
+	def extract_length(data):
+	    try:
+	        # Also convert to int since update_time will be string.  When comparing
+	        # strings, "10" is smaller than "2".
+	        return int(data['length'])
+	    except KeyError:
+	        return 0
+
+	def getNext(self, audio_id):					
+		return self.getClosestLength(audio_id)
+
+	def sort_by_length(self, d):
+		    '''a helper function for sorting'''
+		    return d['length']	
+
+	def getClosestLength(self, audio_id):
+		obj = self._get_from_id(audio_id)
+		_data = self.data		
+		_sorted = sorted(_data, key=self.sort_by_length)		
+		for i in range(len(_sorted)):
+			# print(_sorted[i]['length'])
+			if _sorted[i]['length'] > obj['length']:
+				if _sorted[i]['text'] != "":
+					return _sorted[i]			
+
 
