@@ -20,19 +20,48 @@ from nltk import tokenize
 from argparse import ArgumentParser
 
 parser = ArgumentParser()
+# settings - modos de configurar o auditok e dinâmica de reprodução:
+# 
+#  teste:
+#     Escuta, grava, responde logo após com 1 áudio
+#  
+#  entrevista:
+#     parâmetros para ambiente com pouco barulho, e intermissões não tão curtas
+#     sem resposta, só escuta
+#
+#  ambiente:
+#     
+#
+#  música
+#
 
-parser.add_argument("-m", "--modo", dest="modo",
-                    help="Modo de funcionamento", default="simples")
-parser.add_argument("-r", "--rate", dest="sampling_rate", 
-                     default=48000, help="sampling rate")
+parser.add_argument("-s", "--settings", dest="settings",
+                    help="Settings do auditok e dinâmica de reprodução", default="teste")
+# sample rate
+parser.add_argument("-r", "--rate", dest="sample_rate",
+                     default=48000, help="sample rate")
+
+# threshhold de volume para iniciar gravação
 parser.add_argument("-t", "--threshold", dest="threshold", 
                      default=52, help="energy threshold for auditok")
+
+# modo debug
 parser.add_argument("-D", "--DEBUG", dest="DEBUG", 
                      default=False, help="energy threshold for auditok")
+
+# data file
 parser.add_argument("-j", "--json_file_path", dest="data_file", 
                      default='data.json', help="destination data file")
+
+# pasta para guardar arquivos gravados
 parser.add_argument("-a", "--audio_folder", dest="audio_folder", 
                      default='audios/', help="local folder where files are saved")
+
+# modos de funcionamento
+parser.add_argument("-m", "--modo", dest="modo",
+                    help="Modo de funcionamento", default="simples")
+
+
 args = parser.parse_args()
 
 
@@ -63,7 +92,7 @@ energy_threshold = int(args.threshold)
 duration = 10000 # seconds
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
-sample_rate = args.sampling_rate
+sample_rate = int(args.sampling_rate)
 CHUNK = 1024
 chunk = CHUNK
 RECORD_SECONDS = 10000
@@ -82,7 +111,7 @@ try:
    channels = asource.get_channels()
    
    # START VALIDATOR
-   validator = AudioEnergyValidator(sample_width=sample_width, energy_threshold = energy_threshold)
+   validator = AudioEnergyValidator(sample_width=sample_width, energy_threshold = energy_threshold, sampling_rate = sampling_rate )
    tokenizer = StreamTokenizer(validator=validator, min_length=150, max_length=RECORD_SECONDS, max_continuous_silence=200) #  
 
    # LOAD PYAUDIO 
@@ -100,7 +129,7 @@ try:
 
    # print out sound devices
    if DEBUG:       
-      print('sample values', sample_width, sample_rate)      
+      print('sample rate',  sample_rate)      
       for i in range(p.get_device_count()):
          dev = p.get_device_info_by_index(i)
          print((i,dev['name'],dev['maxInputChannels']))   
