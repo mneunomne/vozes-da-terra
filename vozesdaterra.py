@@ -7,8 +7,7 @@ import random
 import glob, os
 import platform
 import speech_recognition as sr
-import asyncio
-import _thread
+from thread import *
 import uuid
 import datetime 
 import ftplib
@@ -60,16 +59,32 @@ parser.add_argument("-a", "--audio_folder", dest="audio_folder",
                      default='audios/', help="local folder where files are saved")
 
 # modos de funcionamento
-parser.add_argument("-m", "--modo", dest="modo",
-                    help="Modo de funcionamento", default="simples")
+parser.add_argument("-M", "--modo", dest="modo",
+                    help="Modo de funcionamento", default="echo")
+
 
 
 args = parser.parse_args()
 
+sample_rate = int(args.sample_rate)
+FORMAT = pyaudio.paInt16
+CHANNELS = 2
+CHUNK = 1024
+chunk = CHUNK
 
-INTELIGENCIA = True
+# parametros de áudio
+max_length = 5000
+max_interval = 12000
+max_continuous_silence = 200
+min_length = 150
 
-TESTE = True
+settings = args.settings
+if settings == 'entrevista':
+   max_length = 50000
+   max_interval = 15000
+   max_continuous_silence = 500
+   min_length = 100
+
 
 # parametros de funcionamento
 MODO = args.modo
@@ -77,7 +92,7 @@ DEBUG = args.DEBUG
 
 SAVE_FILES = True
 UPLOAD_TO_SERVER = False
-TRANSCRIPTION = True
+TRANSCRIPTION = False
 
 # local audio storage folder 
 audio_folder = args.audio_folder
@@ -91,17 +106,15 @@ DATA_FILE_PATH =  args.data_file
 
 # parametros de áudio
 energy_threshold = int(args.threshold)
-duration = 10000 # seconds
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
 sample_rate = int(args.sample_rate)
 CHUNK = 1024
 chunk = CHUNK
-RECORD_SECONDS = 10000
 
 try:
    # set up audio source  
-   asource = ADSFactory.ads(record=True, max_time = duration, sampling_rate = sample_rate)
+   asource = ADSFactory.ads(record=True, max_time = min_length, sampling_rate = sample_rate)
 
    #check os system and set sample rate 48000 for Linux (Raspberry Pi)
    _os = platform.system()
@@ -114,7 +127,7 @@ try:
    
    # START VALIDATOR
    validator = AudioEnergyValidator(sample_width=sample_width, energy_threshold = energy_threshold)
-   tokenizer = StreamTokenizer(validator=validator, min_length=150, max_length=RECORD_SECONDS, max_continuous_silence=200) #  
+   tokenizer = StreamTokenizer(validator=validator, min_length=min_length, max_length=max_length, max_continuous_silence=max_continuous_silence) #  
 
    # LOAD PYAUDIO 
    p = pyaudio.PyAudio()
@@ -125,7 +138,7 @@ try:
    # gui vars
    root = Tk()
    display = GUI(root)
-   
+
    if TRANSCRIPTION:
       # LOAD RECOGNIZER
       recognizer = sr.Recognizer("pt-BR")     
@@ -143,31 +156,9 @@ try:
    def init():
       display.set_state('listening')
       asource.open()
-      print("\n  ** Make some noise (dur:{}, energy:{})...".format(duration, energy_threshold))      
+      print("\n  ** Make some noise (dur:{}, energy:{})...".format(max_length, energy_threshold))      
       tokenizer.tokenize(asource, callback=savefile)      
       asource.close()
-
-   def input_text(list):
-      for prediction in list:
-         print(" " + prediction["text"] + " (" + str(prediction["confidence"]*100) + "%)")
-
-   def escutar(a, b):
-      r = sr.Recognizer()
-      with sr.Microphone() as source:                # use the default microphone as the audio source
-         audio = r.listen(source)                   # listen for the first phrase and extract it into audio data
-         print("You said " + r.recognize(audio))
-      try:
-         print("You said " + r.recognize(audio))    # recognize speech using Google Speech Recognition
-         thread(escutar, [0,0])
-      except LookupError:                            # speech is unintelligible
-         print("Could not understand audio")
-         thread(escutar, [0,0])
-
-   def thread(func, params = [None, None]):
-      try:
-         _thread.start_new_thread( func, (params[0], params[1]) )
-      except:
-         print("error starting thread")
 
    def savefile(data, start, end):      
       print("Acoustic activity at: {0}--{1}".format(start, end))        
@@ -219,7 +210,8 @@ try:
                      "text": "",
                      "server_path": SERVER_URL + SERVER_PATH,
                      "stemms": [],
-                     "last_played": timestamp
+                     "last_played": timestamp,
+                     "isUploaded": False
                   }         
       _memoria.append(audio_data)      
       # upload file to server
@@ -257,6 +249,7 @@ try:
       file = open(filename,'rb')                       # file to send
       session.storbinary('STOR ' + audio_id + '.wav', file)     # send the file
       print('file saved in server')      
+      _memoria.set(audio_id, "isUploaded", True)
       # close file and FTP
       file.close()
       session.quit()
@@ -299,23 +292,36 @@ try:
       change_in_dBFS = target_dBFS - sound.dBFS
       return sound.apply_gain(change_in_dBFS)
 
+#   def input_text(list):
+#      for prediction in list:
+#         print(" " + prediction["text"] + " (" + str(prediction["confidence"]*100) + "%)")
+#
+#   def escutar(a, b):
+#      r = sr.Recognizer()
+#      with sr.Microphone() as source:                # use the default microphone as the audio source
+#         audio = r.listen(source)                   # listen for the first phrase and extract it into audio data
+#         print("You said " + r.recognize(audio))
+#      try:
+#         print("You said " + r.recognize(audio))    # recognize speech using Google Speech Recognition
+#         thread(escutar, [0,0])
+#      except LookupError:                            # speech is unintelligible
+#         print("Could not understand audio")
+#         thread(escutar, [0,0])
+
+
 #
 #  Oraculo, 
 #  Comportamento para o próximo áudio 
 #
 
-   def onNewAudio(filename, audio_id):   
+   def onNewAudio(filename, audio_id):
       if MODO == 'escuta':
          # start counter to go into playmode
-
+         print('escuta')
       elif MODO == 'oraculo':
-         if(INTELIGENCIA):
-            # pegar próximo áudio baseado na transcrição ( necessita de internet )
-         else:
-            next_audio = _memoria.getNext(audio_id)
-            print(next_audio['text'])
-            playfile(next_audio['filename'], next_audio['id'])
-
+         next_audio = _memoria.getNext(audio_id)
+         print(next_audio['text'])
+         playfile(next_audio['filename'], next_audio['id'])
       elif MODO == 'echo':
          playfile(filename, audio_id) 
       
