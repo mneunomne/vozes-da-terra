@@ -19,6 +19,8 @@ import nltk
 from nltk import tokenize
 from argparse import ArgumentParser
 
+from gui import *
+
 parser = ArgumentParser()
 # settings - modos de configurar o auditok e dinâmica de reprodução:
 # 
@@ -38,7 +40,7 @@ parser = ArgumentParser()
 parser.add_argument("-s", "--settings", dest="settings",
                     help="Settings do auditok e dinâmica de reprodução", default="teste")
 # sample rate
-parser.add_argument("-r", "--rate", dest="sample_rate",
+parser.add_argument("-r", "--sample_rate", dest="sample_rate",
                      default=48000, help="sample rate")
 
 # threshhold de volume para iniciar gravação
@@ -92,7 +94,7 @@ energy_threshold = int(args.threshold)
 duration = 10000 # seconds
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
-sample_rate = int(args.sampling_rate)
+sample_rate = int(args.sample_rate)
 CHUNK = 1024
 chunk = CHUNK
 RECORD_SECONDS = 10000
@@ -111,7 +113,7 @@ try:
    channels = asource.get_channels()
    
    # START VALIDATOR
-   validator = AudioEnergyValidator(sample_width=sample_width, energy_threshold = energy_threshold, sampling_rate = sampling_rate )
+   validator = AudioEnergyValidator(sample_width=sample_width, energy_threshold = energy_threshold)
    tokenizer = StreamTokenizer(validator=validator, min_length=150, max_length=RECORD_SECONDS, max_continuous_silence=200) #  
 
    # LOAD PYAUDIO 
@@ -119,6 +121,10 @@ try:
 
    # start classe memoria
    _memoria = memoria.Memoria()
+
+   # gui vars
+   root = Tk()
+   display = GUI(root)
    
    if TRANSCRIPTION:
       # LOAD RECOGNIZER
@@ -135,11 +141,11 @@ try:
          print((i,dev['name'],dev['maxInputChannels']))   
 
    def init():
+      display.set_state('listening')
       asource.open()
-      print("\n  ** Make some noise (dur:{}, energy:{})...".format(duration, energy_threshold))
-      tokenizer.tokenize(asource, callback=savefile)
-      thread(escutar, [0,0])
-      asource.close()       
+      print("\n  ** Make some noise (dur:{}, energy:{})...".format(duration, energy_threshold))      
+      tokenizer.tokenize(asource, callback=savefile)      
+      asource.close()
 
    def input_text(list):
       for prediction in list:
@@ -261,6 +267,7 @@ try:
       return filename
 
    def playfile(filename, audio_id = 0):    
+      display.set_state('playing')
       asource.close()      
       print('input muted')
       timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
@@ -285,7 +292,8 @@ try:
          wave_player.close()
          print('input unmuted')
          asource.open()
-         print('-----------------------')      
+         print('-----------------------')
+         display.set_state('listening')      
 
    def match_target_amplitude(sound, target_dBFS):
       change_in_dBFS = target_dBFS - sound.dBFS
@@ -296,15 +304,21 @@ try:
 #  Comportamento para o próximo áudio 
 #
 
-   def onNewAudio(filename, audio_id):
-      if(INTELIGENCIA):
-         print('prolongado...')
-         next_audio = _memoria.getNext(audio_id)
-         print(next_audio['text'])
-         playfile(next_audio['filename'], next_audio['id'])
-      else:
-         playfile(filename, audio_id)
+   def onNewAudio(filename, audio_id):   
+      if MODO == 'escuta':
+         # start counter to go into playmode
 
+      elif MODO == 'oraculo':
+         if(INTELIGENCIA):
+            # pegar próximo áudio baseado na transcrição ( necessita de internet )
+         else:
+            next_audio = _memoria.getNext(audio_id)
+            print(next_audio['text'])
+            playfile(next_audio['filename'], next_audio['id'])
+
+      elif MODO == 'echo':
+         playfile(filename, audio_id) 
+      
 
    # Start
    init()
