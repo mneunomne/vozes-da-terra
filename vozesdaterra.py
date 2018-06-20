@@ -56,7 +56,7 @@ parser.add_argument("-j", "--json_file_path", dest="data_file",
 
 # pasta para guardar arquivos gravados
 parser.add_argument("-a", "--audio_folder", dest="audio_folder", 
-                     default='audios/', help="local folder where files are saved")
+                     default='pankararu/', help="local folder where files are saved")
 
 # modos de funcionamento
 parser.add_argument("-M", "--modo", dest="modo",
@@ -71,11 +71,12 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 2
 CHUNK = 1024
 chunk = CHUNK
+GUI = False
 
 # parametros de áudio
-max_length = 5000
+max_length = 1000000
 max_interval = 12000
-max_continuous_silence = 200
+max_continuous_silence = 500
 min_length = 150
 
 settings = args.settings
@@ -136,8 +137,9 @@ try:
    _memoria = memoria.Memoria()
 
    # gui vars
-   root = Tk()
-   display = GUI(root)
+   if GUI:
+       root = Tk()
+       display = (root)
 
    if TRANSCRIPTION:
       # LOAD RECOGNIZER
@@ -154,7 +156,8 @@ try:
          print((i,dev['name'],dev['maxInputChannels']))   
 
    def init():
-      display.set_state('listening')
+      if GUI:
+          display.set_state('listening')
       asource.open()
       print("\n  ** Make some noise (dur:{}, energy:{})...".format(max_length, energy_threshold))      
       tokenizer.tokenize(asource, callback=savefile)      
@@ -180,7 +183,7 @@ try:
 
       # normalize volume
       sound = AudioSegment.from_file(filename, "wav")
-      normalized_sound = match_target_amplitude(sound, -30.0)
+      normalized_sound = match_target_amplitude(sound, -15.0)
 
       with_fade = normalized_sound.fade_in(200).fade_out(200)
 
@@ -200,7 +203,8 @@ try:
       # get timestamp 
       timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())      
       # start process of analyzing audio ... (async)      
-      thread(analyze_audio, [filename, audio_id])      
+      if TRANSCRIPTION:
+          thread(analyze_audio, [filename, audio_id])      
       # data structure
       audio_data = {
                      "id": audio_id,
@@ -260,7 +264,8 @@ try:
       return filename
 
    def playfile(filename, audio_id = 0):    
-      display.set_state('playing')
+      if GUI:
+          display.set_state('playing')
       asource.close()      
       print('input muted')
       timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
@@ -286,7 +291,8 @@ try:
          print('input unmuted')
          asource.open()
          print('-----------------------')
-         display.set_state('listening')      
+         if GUI:
+             display.set_state('listening')      
 
    def match_target_amplitude(sound, target_dBFS):
       change_in_dBFS = target_dBFS - sound.dBFS
