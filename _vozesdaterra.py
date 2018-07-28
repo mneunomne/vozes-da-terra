@@ -21,7 +21,6 @@ from argparse import ArgumentParser
 from gui import *
 
 parser = ArgumentParser()
-
 # settings - modos de configurar o auditok e dinâmica de reprodução:
 # 
 #  teste:
@@ -62,6 +61,8 @@ parser.add_argument("-a", "--audio_folder", dest="audio_folder",
 # modos de funcionamento
 parser.add_argument("-M", "--modo", dest="modo",
                     help="Modo de funcionamento", default="echo")
+
+
 
 args = parser.parse_args()
 
@@ -137,8 +138,8 @@ try:
 
    # gui vars
    if GUI:
-      root = Tk()
-      display = (root)
+       root = Tk()
+       display = (root)
 
    if TRANSCRIPTION:
       # LOAD RECOGNIZER
@@ -156,22 +157,15 @@ try:
 
    def init():
       if GUI:
-         display.set_state('listening')
-      
-      if MODO == 'echo':
-         asource.open()
-         print("\n  ** Make some noise (dur:{}, energy:{})...".format(max_length, energy_threshold))      
-         tokenizer.tokenize(asource, callback=savefile)      
-         asource.close()
-      elif MODO == 'random':
-         playrandom()
-
+          display.set_state('listening')
+      asource.open()
+      print("\n  ** Make some noise (dur:{}, energy:{})...".format(max_length, energy_threshold))      
+      tokenizer.tokenize(asource, callback=savefile)      
+      asource.close()
 
    def savefile(data, start, end):      
       print("Acoustic activity at: {0}--{1}".format(start, end))        
-
-      filename = audio_folder + '{:%Y-%m-%d_%H:%M:%S}'.format(datetime.datetime.now())
-      # filename = audio_folder + "teste_{0}_{1}.wav".format(start, end)      
+      filename = audio_folder + "teste_{0}_{1}.wav".format(start, end)      
       # create folder if 'audios' doesnt exist
       if not os.path.exists(os.path.dirname(filename)):
           try:
@@ -298,28 +292,7 @@ try:
          asource.open()
          print('-----------------------')
          if GUI:
-             display.set_state('listening')
-
-   def playrandom():
-      filename = random.choice(glob.glob(audio_folder + '*.wav'))
-      print("open", filename)
-      wave_player = wave.open(filename, 'rb')
-      data = wave_player.readframes(chunk)
-      # open stream to play audio 
-      stream = p.open(
-            format = FORMAT,
-            channels = channels,
-            rate = sample_rate,
-            output = True)
-      print('playing: ' + filename)
-      # read all file     
-      while len(data) > 0:
-            stream.write(data)
-            data = wave_player.readframes(chunk)
-      else:          
-         stream.close()
-         wave_player.close()         
-         playrandom()
+             display.set_state('listening')      
 
    def match_target_amplitude(sound, target_dBFS):
       change_in_dBFS = target_dBFS - sound.dBFS
@@ -340,6 +313,8 @@ try:
 #      except LookupError:                            # speech is unintelligible
 #         print("Could not understand audio")
 #         thread(escutar, [0,0])
+
+
 #
 #  Oraculo, 
 #  Comportamento para o próximo áudio 
@@ -355,8 +330,6 @@ try:
          playfile(next_audio['filename'], next_audio['id'])
       elif MODO == 'echo':
          playfile(filename, audio_id) 
-      elif MODO == 'random':
-         playrandom()
       
 
    # Start
