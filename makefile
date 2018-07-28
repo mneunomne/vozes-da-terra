@@ -13,3 +13,6 @@ long_audios:
 clear:
 	rm data.json
 	rm *.wav
+
+random:
+	python3 vozesdaterra.py -M "random" -a "decupados/"
