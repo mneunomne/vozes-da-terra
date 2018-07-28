@@ -8,6 +8,7 @@ import glob, os
 import platform
 import speech_recognition as sr
 from thread import *
+from chaves import *
 import uuid
 import datetime 
 import ftplib
@@ -17,6 +18,8 @@ from pydub import AudioSegment
 import nltk    
 from nltk import tokenize
 from argparse import ArgumentParser
+
+import re
 
 from gui import *
 
@@ -61,7 +64,7 @@ parser.add_argument("-a", "--audio_folder", dest="audio_folder",
 
 # modos de funcionamento
 parser.add_argument("-M", "--modo", dest="modo",
-                    help="Modo de funcionamento", default="echo")
+                    help="Modo de funcionamento", default="password")
 
 args = parser.parse_args()
 
@@ -92,7 +95,7 @@ DEBUG = args.DEBUG
 
 SAVE_FILES = True
 UPLOAD_TO_SERVER = False
-TRANSCRIPTION = False
+TRANSCRIPTION = True
 
 # local audio storage folder 
 audio_folder = args.audio_folder
@@ -147,6 +150,10 @@ try:
       stop_words = nltk.corpus.stopwords.words('portuguese')
       stemmer = nltk.stem.RSLPStemmer()           
 
+      path = os.getenv('PATH')
+      print("Path is: %s" % (path,))
+      print("shutil_which gives location: %s" % (sr.shutil_which('flac')))
+
    # print out sound devices
    if DEBUG:       
       print('sample rate',  sample_rate)      
@@ -159,12 +166,23 @@ try:
          display.set_state('listening')
       
       if MODO == 'echo':
+         ## abrir microfone
          asource.open()
          print("\n  ** Make some noise (dur:{}, energy:{})...".format(max_length, energy_threshold))      
+         ## começar tokenizer
          tokenizer.tokenize(asource, callback=savefile)      
          asource.close()
+      
+      ### random player ###
       elif MODO == 'random':
          playrandom()
+
+      ### ###
+      elif MODO == 'password':
+         ## abrir o mic, pegar texto
+         print('aaaaaa é o password')
+         listen(0, 0)         
+
 
 
    def savefile(data, start, end):      
@@ -228,6 +246,32 @@ try:
       if UPLOAD_TO_SERVER:
          thread(upload, [filename, audio_id])
 
+   def listen(a, b):
+      with sr.Microphone() as source:
+          print("Say something!")
+          audio = recognizer.listen(source)         
+      try:
+         text = recognizer.recognize(audio)
+
+         print("Transcription: " + recognizer.recognize(audio))   # recognize speech using Google Speech Recognition         
+         # playrandom()
+         # time.sleep(1)
+
+         wordList = re.sub("[^\w]", " ",  text.lower()).split()
+
+
+         hasFound = false;
+         for word in wordList:
+            if word in chaves :               
+               print("heeeey!", text)
+
+         #channel()
+         listen(0, 0)
+      except LookupError:                                 # speech is unintelligible
+          print("Could not understand audio") 
+          #channel()
+          listen(0, 0)
+          # thread(listen, [0, 0])
 
    def analyze_audio(filename, audio_id):       
       # print("reading file", filename)
@@ -243,14 +287,13 @@ try:
       except LookupError:                                 # speech is unintelligible
           print("Could not understand audio")  
 
-
-   def stemm_text(text, audio_id):
+   def stemm_text(text, audio_id = -1):
       print('text', text)
       tokens = tokenize.word_tokenize(text, language='portuguese')    
       stemms = [stemmer.stem(i) for i in tokens if i not in stop_words]
       print('stemms', stemms)    
-      _memoria.set(audio_id, "stemms", stemms)
-      
+      if audio != -1:
+         _memoria.set(audio_id, "stemms", stemms)      
 
    def upload(filename, audio_id):
       session = ftplib.FTP(SERVER_URL, USERNAME, PASSWORD)
@@ -319,7 +362,7 @@ try:
       else:          
          stream.close()
          wave_player.close()         
-         playrandom()
+         ## playrandom()
 
    def match_target_amplitude(sound, target_dBFS):
       change_in_dBFS = target_dBFS - sound.dBFS
@@ -366,10 +409,10 @@ except KeyboardInterrupt:
    asource.close()
    sys.exit(0)
 
-except Exception as e:
-   sys.stderr.write(str(e) + "\n")
-   sys.exit(1)
+# except Exception as e:
+   ## sys.stderr.write(str(e) + "\n")
+   ## sys.exit(1)
                                
-      
+       
       
 
