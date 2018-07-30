@@ -1,3 +1,5 @@
+#!/usr/bin/python3 python3
+
 from auditok import ADSFactory, AudioEnergyValidator, StreamTokenizer, player_for, from_file
 import pyaudio
 import wave
@@ -70,7 +72,7 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 2
 CHUNK = 1024
 chunk = CHUNK
-GUI = False
+#GUI = False
 
 # parametros de áudio
 max_length = 1000000
@@ -138,7 +140,7 @@ try:
    # gui vars
    if GUI:
       root = Tk()
-      display = (root)
+      display = GUI(root)
 
    if TRANSCRIPTION:
       # LOAD RECOGNIZER
