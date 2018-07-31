@@ -26,7 +26,7 @@ import re
 
 from gui import *
 
-sys.stdout = open('log.txt', 'w')
+# sys.stdout = open('log.txt', 'w')
 
 parser = ArgumentParser()
 
@@ -69,7 +69,7 @@ parser.add_argument("-a", "--audio_folder", dest="audio_folder",
 
 # modos de funcionamento
 parser.add_argument("-M", "--modo", dest="modo",
-                    help="Modo de funcionamento", default="random")
+                    help="Modo de funcionamento", default="password")
 
 args = parser.parse_args()
 
@@ -120,7 +120,11 @@ sample_rate = int(args.sample_rate)
 CHUNK = 1024
 chunk = CHUNK
 
+import urllib.request as urllib2
+
 try:
+    
+  
    # set up audio source  
    asource = ADSFactory.ads(record=True, max_time = min_length, sampling_rate = sample_rate)
 
@@ -184,11 +188,9 @@ try:
 
       ### ###
       elif MODO == 'password':
-         ## abrir o mic, pegar texto
-         print('aaaaaa é o password')
-         listen(0, 0)         
-
-
+         offline_response()
+          
+                 
 
    def savefile(data, start, end):      
       print("Acoustic activity at: {0}--{1}".format(start, end))        
@@ -250,8 +252,30 @@ try:
       # upload file to server
       if UPLOAD_TO_SERVER:
          thread(upload, [filename, audio_id])
-
+   
+   def offline_response():
+       try:
+           online = is_online();
+           
+           if is_online():
+                 ## abrir o mic, pegar texto
+                 print('aaaaaa é o password')
+                 listen(0, 0)
+           else:
+                 asource.open()
+                 print("\n  ** Make some noise (dur:{}, energy:{})...".format(max_length, energy_threshold))
+                 ## começar tokenizer
+                 tokenizer.tokenize(asource, callback=playrandom)      
+                 asource.close()
+       except LookupError:
+           asource.open()
+           print("\n  ** Make some noise (dur:{}, energy:{})...".format(max_length, energy_threshold))
+           ## começar tokenizer
+           tokenizer.tokenize(asource, callback=playrandom)      
+           asource.close()
+       
    def listen(a, b):
+      print("listening!")
       with sr.Microphone() as source:
           print("Say something!")
           audio = recognizer.listen(source)         
@@ -265,10 +289,13 @@ try:
          wordList = re.sub("[^\w]", " ",  text.lower()).split()
 
 
-         hasFound = false;
+         hasFound = False;
          for word in wordList:
-            if word in chaves :               
+            if word in chaves:               
                print("heeeey!", text)
+               if hasFound == False:
+                   hasFound = True
+                   playrandom()
 
          #channel()
          listen(0, 0)
@@ -348,7 +375,7 @@ try:
          if GUI:
              display.set_state('listening')
 
-   def playrandom():
+   def playrandom(a = 0, b = 0, c = 0):
       filename = random.choice(glob.glob(audio_folder + '*.wav'))
       print("open", filename)
       wave_player = wave.open(filename, 'rb')
@@ -366,7 +393,9 @@ try:
             data = wave_player.readframes(chunk)
       else:          
          stream.close()
-         wave_player.close()         
+         wave_player.close()
+         if MODO == 'password':
+             offline_response()
          ## playrandom()
 
    def match_target_amplitude(sound, target_dBFS):
@@ -405,7 +434,14 @@ try:
          playfile(filename, audio_id) 
       elif MODO == 'random':
          playrandom()
-      
+    
+    
+   def is_online():
+      try:
+          urllib2.urlopen('http://216.58.192.42', timeout=1)
+          return True
+      except urllib2.URLError as err:
+          return False
 
    # Start
    init()
