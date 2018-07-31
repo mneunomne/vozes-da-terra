@@ -19,8 +19,9 @@ from pydub import AudioSegment
 import nltk    
 from nltk import tokenize
 from argparse import ArgumentParser
-
 from gui import *
+
+sys.stdout = open('log.txt', 'w')
 
 parser = ArgumentParser()
 
