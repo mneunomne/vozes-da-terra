@@ -3,7 +3,7 @@ from tkinter import *
 class GUI:
 	def __init__(self, root):
 		self.root = root
-		self.w, self.h = root.winfo_screenwidth(), root.winfo_screenheight()
+		self.w, self.h = root.winfo_screenwidth()-100, root.winfo_screenheight()-100
 		self.root.overrideredirect(1)
 		
 		self.root.geometry("%dx%d+0+0" % (self.w, self.h))

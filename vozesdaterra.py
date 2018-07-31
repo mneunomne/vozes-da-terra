@@ -63,7 +63,7 @@ parser.add_argument("-a", "--audio_folder", dest="audio_folder",
 
 # modos de funcionamento
 parser.add_argument("-M", "--modo", dest="modo",
-                    help="Modo de funcionamento", default="echo")
+                    help="Modo de funcionamento", default="random")
 
 args = parser.parse_args()
 
