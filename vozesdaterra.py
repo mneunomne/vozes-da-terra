@@ -69,7 +69,7 @@ parser.add_argument("-a", "--audio_folder", dest="audio_folder",
 
 # modos de funcionamento
 parser.add_argument("-M", "--modo", dest="modo",
-                    help="Modo de funcionamento", default="password")
+                    help="Modo de funcionamento", default="random")
 
 args = parser.parse_args()
 
@@ -122,9 +122,15 @@ chunk = CHUNK
 
 import urllib.request as urllib2
 
+
+### START 
 try:
-    
-  
+   # brincadeira
+   s = "as vozes da terra pankararu"
+   o = "-"
+   for c in s:
+       o += "-"
+       print(o + c);
    # set up audio source  
    asource = ADSFactory.ads(record=True, max_time = min_length, sampling_rate = sample_rate)
 
@@ -172,14 +178,14 @@ try:
 
    def init():
       if GUI:
-         display.set_state('listening')
-      
+         display.set_state(MODO)
+         
       if MODO == 'echo':
          ## abrir microfone
          asource.open()
          print("\n  ** Make some noise (dur:{}, energy:{})...".format(max_length, energy_threshold))      
          ## começar tokenizer
-         tokenizer.tokenize(asource, callback=savefile)      
+         tokenizer.tokenize(asource, callback=savefile)
          asource.close()
       
       ### random player ###
@@ -187,15 +193,15 @@ try:
          playrandom()
 
       ### ###
-      elif MODO == 'password':
+      elif MODO == 'oraculo':
+         
+          
          offline_response()
           
-                 
-
    def savefile(data, start, end):      
       print("Acoustic activity at: {0}--{1}".format(start, end))        
 
-      filename = audio_folder + '{:%Y-%m-%d_%H:%M:%S}'.format(datetime.datetime.now())
+      filename = audio_folder + 'expo_{%m_%d_%H:%M:%S}'.format(datetime.datetime.now())
       # filename = audio_folder + "teste_{0}_{1}.wav".format(start, end)      
       # create folder if 'audios' doesnt exist
       if not os.path.exists(os.path.dirname(filename)):
@@ -338,9 +344,8 @@ try:
       # close file and FTP
       file.close()
       session.quit()
-      print('end session')
-
-
+      print('end session')    
+    
    def getAudioToPlay(filename):
       return filename
 
@@ -373,9 +378,11 @@ try:
          asource.open()
          print('-----------------------')
          if GUI:
-             display.set_state('listening')
+             display.set_state(MODO)
 
    def playrandom(a = 0, b = 0, c = 0):
+      if GUI:
+          display.set_state('playing')
       filename = random.choice(glob.glob(audio_folder + '*.wav'))
       print("open", filename)
       wave_player = wave.open(filename, 'rb')
@@ -394,9 +401,12 @@ try:
       else:          
          stream.close()
          wave_player.close()
-         if MODO == 'password':
+         display.set_state(MODO)
+         if MODO == 'oraculo':
              offline_response()
-         ## playrandom()
+         elif MODO == 'random':
+             time.sleep(5)
+             playrandom()
 
    def match_target_amplitude(sound, target_dBFS):
       change_in_dBFS = target_dBFS - sound.dBFS
