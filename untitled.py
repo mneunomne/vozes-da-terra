@@ -1,13 +1,32 @@
 import nltk    
 from nltk import tokenize
 
-
-sents = ["aqui jaz um jarro", "aqui é o que é", "alo alo alo"]
-
-
-
-
-
+sents = [	"aqui jaz um jarro", 
+			"aqui é o que é", "alo alo alo",
+			"aba nada chove conduzir",
+			"pai nosso que estás no céu",
+			"eu amo você",
+			"fulana sente medo da chuv",
+			"que deus traga muitas coisas boas para nós",
+			"pela memória do povo pankararu",
+			"a voz da terra",
+			"alo alo alo",
+			"a",
+			"oi",
+			"como funciona",
+			"olá dona vilma",
+			"salve nossa senhora",
+			"queria colocar pro mundo inteiro escutar",
+			"ola ola ola",
+			"quero mandar uma mensagem de muito carinho para todos os que estão escutando a minha voz aqui quem fala é dona bárbara joaquina de jesus, falando da aldeia brejo dos padros em pernambuco",
+			"mandar uma mensagem para o encatado e pedir a palavra",
+			"mandar uma lembrança pra minha vózinha amada",
+			"ola tudo bom",
+			"quem está falando",
+			"como funciona",
+			"alo alo alo",
+			"a musica diz muito sobre todos nós",
+			"queria fazer um pedido pro senhor prefeito do município de tacaratu"]
 
 stop_words = nltk.corpus.stopwords.words('portuguese')
 stemmer = nltk.stem.RSLPStemmer()

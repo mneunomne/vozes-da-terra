@@ -206,11 +206,15 @@ class Recognizer(AudioSource):
         # flac utility is not installed
         if flac_converter is None:
             processors = ["i386", "x86", "x86_64", "AMD64"]
+            
+            print(system, path)
             # Windows NT, use the bundled FLAC conversion utility
             if system == "Windows" and platform.machine() in processors:
                 flac_converter = os.path.join(path, "flac-win32.exe")
             elif system == "Linux" and platform.machine() in processors:
                 flac_converter = os.path.join(path, "flac-linux-i386")
+            elif system == "Darwin" and platform.machine() in processors:
+                flac_converter = os.path.join(path, "flac")
             else:
                 raise OSError(
                     """FLAC conversion utility not available - consider installing
