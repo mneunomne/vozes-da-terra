@@ -81,6 +81,8 @@ CHUNK = 1024
 chunk = CHUNK
 #GUI = False
 
+last_played_type = " "
+
 # parametros de áudio
 max_length = 1000000
 max_interval = 12000
@@ -127,6 +129,8 @@ chunk = CHUNK
 print("sample_rate", sample_rate)
 
 try:
+
+   last_played_type = "asd"
    # set up audio source  
    asource = ADSFactory.ads(record=True, max_time = min_length, sampling_rate = sample_rate)
 
@@ -189,11 +193,11 @@ try:
          playrandom()
 
       ### ###
-      elif MODO == 'password':
+      elif MODO == 'oraculo':
          ## abrir o mic, pegar texto
-         asource.open()
+        #  asource.open()
          print('aaaaaa é o password')
-         listen(0, 0)         
+         listen(0, 0)     
 
 
 
@@ -271,10 +275,9 @@ try:
 
          wordList = re.sub("[^\w]", " ",  text.lower()).split()
 
-         hasFound = false;
-         for word in wordList:
-            if word in chaves :               
-               print("heeeey!", text)
+         filename = get_file_from_list(wordList)
+
+         playfile(filename)
 
          #channel()
          listen(0, 0)
@@ -326,12 +329,15 @@ try:
    def playfile(filename, audio_id = 0, file_channels = 1):    
       if GUI:
           display.set_state('playing')
-      asource.close()      
-      print('input muted')
-      timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
-      _memoria.set(audio_id, "last_played", timestamp)      
-      # get random file from folder
-      # filename = random.choice(glob.glob("*.wav"))
+      
+      if MODO == 'echo':
+         asource.close()      
+         print('input muted')
+
+         timestamp = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
+         _memoria.set(audio_id, "last_played", timestamp)      
+         # get random file from folder         
+      
       wave_player = wave.open(filename, 'rb')
       data = wave_player.readframes(chunk)
       # open stream to play audio 
@@ -348,11 +354,16 @@ try:
       else:          
          stream.close()
          wave_player.close()
-         print('input unmuted')
-         asource.open()
          print('-----------------------')
          if GUI:
              display.set_state(MODO)
+
+         if MODO == 'echo':
+            print('input unmuted')
+            asource.open()
+         
+         if MODO == 'oraculo':
+            listen(0, 0)
 
    def playrandom(file_channels = 1):
       print('play random')
@@ -374,8 +385,11 @@ try:
             data = wave_player.readframes(chunk)
       else:          
          stream.close()
-         wave_player.close()         
-         ## playrandom()
+         wave_player.close()
+
+         if MODO == 'random':
+            time.sleep(5)
+            playrandom()
 
    def match_target_amplitude(sound, target_dBFS):
       change_in_dBFS = target_dBFS - sound.dBFS
@@ -384,14 +398,30 @@ try:
 
 
    def get_file_from_list(words = []):
-      filenames = []
+      _last_played_type = last_played_type
       with open(DATA_FILE_PATH) as f :
-         data = json.load(f)
-         for i in data:
-            print(i["filename"])
-            filenames.append(i["filename"])
-         filename = random.choice(filenames)
-         return filename
+         data = json.load(f)         
+         if len(words) == 0:
+            r = random.choice(data)            
+            while r["type"] == _last_played_type: 
+               r = random.choice(data)         
+            _last_played_type = r["type"]
+            return r["filename"]
+         else:
+            hasFound = False
+            while hasFound == False:               
+               for w in words:    
+                  for i in data:              
+                     for t in i["tags"]:
+                        print(w, t)
+                        if w == t:
+                           print('found !', w, t)
+                           print(i["filename"])
+                           hasFound = True
+                           return i["filename"] 
+               r = random.choice(data)   
+               return r["filename"]
+
 
 #   def input_text(list):
 #      for prediction in list:
