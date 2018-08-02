@@ -20,6 +20,7 @@ from pydub import AudioSegment
 import nltk    
 from nltk import tokenize
 from argparse import ArgumentParser
+from operator import attrgetter
 
 import json
 
@@ -81,6 +82,7 @@ CHUNK = 1024
 chunk = CHUNK
 #GUI = False
 
+time_last_played = 0
 last_played_type = " "
 
 # parametros de áudio
@@ -127,10 +129,10 @@ CHUNK = 1024
 chunk = CHUNK
 
 print("sample_rate", sample_rate)
-
+last_played_time = 0
 try:
-
-   last_played_type = "asd"
+   last_played_time = 0  
+   last_played_type = " "
    # set up audio source  
    asource = ADSFactory.ads(record=True, max_time = min_length, sampling_rate = sample_rate)
 
@@ -177,6 +179,10 @@ try:
          print((i,dev['name'],dev['maxInputChannels']))   
 
    def init():
+      last_played_time = time.time()
+      # thread(timer, [last_played_time, 0])
+      # timer(last_played_time, 0)
+
       if GUI:
          display.set_state('listening')
       
@@ -196,7 +202,7 @@ try:
       elif MODO == 'oraculo':
          ## abrir o mic, pegar texto
         #  asource.open()
-         print('aaaaaa é o password')
+         print('modo', MODO)
          listen(0, 0)     
 
 
@@ -264,10 +270,13 @@ try:
 
    def listen(a, b):
       with sr.Microphone() as source:
-          print("Say something!")
-          audio = recognizer.listen(source)         
+         print("Say something!")
+         audio = recognizer.listen(source, 5)
       try:
-         text = recognizer.recognize(audio)
+         print('-------------------')                   
+         print('recognizing text...')
+
+         text = recognizer.recognize(audio, show_all = False, timeout = None)
 
          print("Transcription: " + recognizer.recognize(audio))   # recognize speech using Google Speech Recognition         
          # playrandom()
@@ -275,14 +284,14 @@ try:
 
          wordList = re.sub("[^\w]", " ",  text.lower()).split()
 
-         filename = get_file_from_list(wordList)
-
+         file = get_file_from_list(wordList)
+         filename = file["filename"]         
          playfile(filename)
 
          #channel()
          listen(0, 0)
       except LookupError:                                 # speech is unintelligible
-          print("Could not understand audio") 
+          print("Could not understand audio")                   
           #channel()
           listen(0, 0)
           # thread(listen, [0, 0])
@@ -339,21 +348,27 @@ try:
          # get random file from folder         
       
       wave_player = wave.open(filename, 'rb')
-      data = wave_player.readframes(chunk)
+      frames = wave_player.readframes(chunk)
+
+      ## update last played time 
+      update_last_played_time(filename)
+
       # open stream to play audio 
       stream = p.open(
             format = FORMAT,
             channels = file_channels,
             rate = sample_rate,
             output = True)
-      print('playing: ' + filename)      
+      print('playing: ' + filename)    
+             
       # read all file     
-      while len(data) > 0:
-            stream.write(data)
-            data = wave_player.readframes(chunk)
+      while len(frames) > 0:            
+            stream.write(frames)
+            frames = wave_player.readframes(chunk)
       else:          
          stream.close()
-         wave_player.close()
+         wave_player.close()         
+
          print('-----------------------')
          if GUI:
              display.set_state(MODO)
@@ -368,11 +383,16 @@ try:
    def playrandom(file_channels = 1):
       print('play random')
       # filename = random.choice(glob.glob(audio_folder + '*.wav'))
-      filename = get_file_from_list()
+      file = get_file_from_list()
+      filename = file['filename']
       print("open", filename)
       wave_player = wave.open(filename, 'rb')
-      data = wave_player.readframes(chunk)
+      frames = wave_player.readframes(chunk)
       # open stream to play audio 
+      
+       ## update last played time
+      update_last_played_time(filename)
+
       stream = p.open(
             format = FORMAT,
             channels = file_channels,
@@ -380,12 +400,12 @@ try:
             output = True)
       print('playing: ' + filename)
       # read all file     
-      while len(data) > 0:
-            stream.write(data)
-            data = wave_player.readframes(chunk)
-      else:          
+      while len(frames) > 0:
+            stream.write(frames)
+            frames = wave_player.readframes(chunk)
+      else:
          stream.close()
-         wave_player.close()
+         wave_player.close()         
 
          if MODO == 'random':
             time.sleep(5)
@@ -395,32 +415,51 @@ try:
       change_in_dBFS = target_dBFS - sound.dBFS
       return sound.apply_gain(change_in_dBFS)
 
-
-
    def get_file_from_list(words = []):
       _last_played_type = last_played_type
       with open(DATA_FILE_PATH) as f :
-         data = json.load(f)         
-         if len(words) == 0:
-            r = random.choice(data)            
-            while r["type"] == _last_played_type: 
-               r = random.choice(data)         
-            _last_played_type = r["type"]
-            return r["filename"]
-         else:
-            hasFound = False
-            while hasFound == False:               
-               for w in words:    
-                  for i in data:              
-                     for t in i["tags"]:
-                        print(w, t)
-                        if w == t:
-                           print('found !', w, t)
-                           print(i["filename"])
-                           hasFound = True
-                           return i["filename"] 
+         data = json.load(f)
+         print('len', len(data))         
+         if len(words) == 0:                     
+            min_ = min(data, key=lambda x: x["lastPlayed"]) 
+            while min_["type"] == _last_played_type:
+               min_ = min(data, key=lambda x: x["lastPlayed"])             
+            print("type", min_["type"])                              
+            _last_played_type = min_["type"]
+            return min_
+         else:            
+            found_list = []
+            hasFound = False                           
+            for w in words:    
+               for i in data:              
+                  for t in i["tags"]:                     
+                     if w == t:
+                        print('found !', w, t)
+                        print(i["filename"])
+                        found_list.append(i)
+                        hasFound = True                           
+                        ## return i["filename"] 
+            if hasFound:               
+               r = random.choice(found_list)
+            else :               
                r = random.choice(data)   
-               return r["filename"]
+            return r
+
+
+
+   def update_last_played_time(filename):
+      print("update last played time")
+      with open(DATA_FILE_PATH) as f :
+         data = json.load(f)         
+         for i in range(len(data)):
+            if data[i]["filename"] == filename:
+               data[i]["lastPlayed"] = time.time()
+               update_data_file(data)  
+
+   def update_data_file(data):
+      with open(DATA_FILE_PATH,"w") as f:           
+         json.dump(data, f, indent=4, sort_keys=True)
+         print("data.json updated")
 
 
 #   def input_text(list):
@@ -441,7 +480,14 @@ try:
 #
 #  Oraculo, 
 #  Comportamento para o próximo áudio 
-#
+   def timer(counter, last_played_time):            
+      print('last_played_time', last_played_time)
+      raise LookupError
+      if time.time() - last_played_time > 5:
+         print('time exceeded!')
+         last_played_time = time.time()      
+      else:
+         timer(counter, last_played_time)
 
    def onNewAudio(filename, audio_id):
       if MODO == 'escuta':

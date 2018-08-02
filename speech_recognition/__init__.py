@@ -63,7 +63,7 @@ try:
             self.device_index = device_index
             self.format = pyaudio.paInt16 # 16-bit int sampling
             self.SAMPLE_WIDTH = pyaudio.get_sample_size(self.format)
-            self.RATE = 16000 # sampling rate in Hertz
+            self.RATE = 48000 # sampling rate in Hertz
             self.CHANNELS = 1 # mono audio
             self.CHUNK = 1024 # number of frames stored in each buffer
 
@@ -343,7 +343,7 @@ class Recognizer(AudioSource):
 
             buffer = source.stream.read(source.CHUNK)
 
-            if len(buffer) == 0:
+            if len(buffer) == 0:                
                 break # reached end of the stream
 
             frames.append(buffer)
@@ -351,6 +351,7 @@ class Recognizer(AudioSource):
             # check if the audio input has stopped being quiet
             energy = audioop.rms(buffer, source.SAMPLE_WIDTH) # energy of the audio signal
             if energy > self.energy_threshold:
+                print('sound detected!')
                 break
 
             # dynamically adjust the energy threshold using assymmetric weighted average
@@ -367,7 +368,8 @@ class Recognizer(AudioSource):
 
         while True:
             buffer = source.stream.read(source.CHUNK)
-            if len(buffer) == 0:
+            if len(buffer) == 0:                
+                print('reached end of the stream!')
                 break # reached end of the stream
 
             frames.append(buffer)
@@ -381,17 +383,19 @@ class Recognizer(AudioSource):
                 pause_count += 1
 
             if pause_count > pause_buffer_count: # end of the phrase
+                print('end of the phrase!')
                 break
 
-         # obtain frame data
+
+        # obtain frame data
         for i in range(quiet_buffer_count, pause_count):
             frames.pop() # remove extra quiet frames at the end
-
+        print('obtained frame data')
         frame_data = b"".join(list(frames))
 
         return AudioData(source.RATE, self.samples_to_flac(source, frame_data))
 
-    def recognize(self, audio_data, show_all = False):
+    def recognize(self, audio_data, show_all = False, timeout = None):
         """
         Performs speech recognition, using the Google Speech Recognition API, on
         ``audio_data`` (an ``AudioData`` instance).
@@ -417,7 +421,7 @@ class Recognizer(AudioSource):
 
         # check for invalid key response from the server
         try:
-            response = urlopen(self.request)
+            response = urlopen(self.request, timeout)
         except URLError:
             raise IndexError("No internet connection available to transfer audio data")
         except:

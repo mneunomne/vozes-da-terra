@@ -1,358 +1,1022 @@
 [
-	{
-		"filename":"entrevistas/barbara-tecnologias.wav",
-		"tags": ["Tecnologias","indígena","Direito","Mundo","Pankararu","Rituais","aprendizado"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/fernando-tirar-o-barro.wav",
-	"tags": ["Mulher","homem","barro","banho","cheiro","mata","erva","manjericão","cabeça","Ritual","ciência"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/barbara-tecnologias2.wav",
-		"tags": ["Universidade","alunos, indígena","cacique","índio","Praiás","Toré","sagrado","Tupinambá","Terreiro"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/mercinha_levaram_para_a_Italia_t.wav",
-	"tags": ["Fruta","farinha","café","açucar","entalha","bichos","alimentação","plantação","natureza","cerâmica"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/fernando-ceramica.wav",
-	"tags": ["Cerâmica","cultura","antepassados","sustentabilidade","barro","Tacaratu","Bahia","Aldeia","Ritual","Encantado","alimento"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/mercinha_melhor_peça_que_t.wav",
-	"tags": ["Inverno","trabalho","cerâmica"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/fernando-disputa-posseiros.wav",
-	"tags": ["Terra","Pankararu","antropologia","perseguição","massacre","etnia","Rio","sofrido","pesca","língua"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/mercinha_mensagem_pote_t.wav",
-	"tags": ["Povo","familía","São Paulo","mundo","Prazer","união","irmão","irmã","parente","mãe","Brasil"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/fernando-parteiras.wav",
-	"tags": ["Fé","cura","agradecimento","menino do Rancho","Deus","ervas","menino","menina","parto","encantado","saúde","saudável"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/mercinha_sempre_uma_boa _T+.wav",
-	"tags": ["Trabalho","cerâmica","barro","fazer","história"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/fernando-problema-da-terra.wav",
-	"tags": ["Terra","Pankararu","antropologia","perseguição","massacre","etnia","Rio","sofrido","pesca","língua"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/rosa-entrevista-deligencia.wav",
-	"tags": ["Hospital","doença","reza","conhecimento","burocracia"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/fernando-sobre-toantes.wav",
-	"tags": ["Toante","letra","antepassados","familía","tradição","encantado","memória"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"entrevistas/rosa-entrevista-rezo.wav",
-	"tags": ["Rezo","rezadeira","cura","fé","tradição"],
-		"type":"entrevistas"
-	},
-	{
-		"filename":"falas/aei.wav",
-		"tags":["alô"],
-		"type":"falas"
-	},
-	{
-		"filename":"falas/geo-pote_me_respode.wav",
-		"tags": ["Oi","som","resposta","responde","pote"],
-		"type":"falas"
-	},
-	{
-		"filename":"falas/alo-ok-oi.wav",
-		"tags":["alô"],
-		"type":"falas"
-	},
-	{
-		"filename":"falas/geo-vocabulario.wav",
-		"tags":["Mulher","homem","moça","pai","boa noite","Pankararu","aprender","ensina"],
-		"type":"falas"
-	},
-	{
-		"filename":"falas/alo-voz-feminina.wav",
-		"tags":	["alô"],
-		"type":"falas"
-	},
-	{
-		"filename":"falas/geo-vocabulario2.wav",
-		"tags":["Lingua","indígena","voz","escuta","memória","cultura","aprender","ensina"],
-		"type":"falas"
-	},
-	{
-		"filename":"falas/antonio-reverberacao.wav",
-		"tags":[ "reverberação"],
-		"type":"falas"
-	},
-	{
-		"filename":"falas/manifestação-discurso-terra 23.34.13.wav",
-	"tags": ["Rezo","rezadeira","cura","fé","tradição"],
-		"type":"falas"
-	},
-	{
-		"filename":"falas/eaipote.wav",
-		"tags":["alô", "oi"],
-		"type":"falas"
-	},
-	{
-		"filename":"falas/manifestação-fernando 23.34.13.wav",
-	"tags": ["Revindicação","povos indígenas","direitos","antepassados","terra","luta","manisfestação"],
-		"type":"falas"
-	},
-	{
-		"filename":"falas/fernandão-maraca.wav",
-		"tags": ["Maraca","toante","sabedoria","negro","raças","mãe terra"],
-		"type":"falas"
-	},
-	{
-		"filename":"falas/sabedoria_ancestral.wav",
-		"tags":["Sabedoria","ancestral"],
-		"type":"falas"
-	},
-	{
-		"filename":"sons/agua_da_bica.wav",
-		"tags":["água", "natureza"],
-		"type":"sons"
-	},
-	{
-		"filename":"sons/cigarras.wav",
-		"tags":["natureza", "noite", "silêncio"],
-		"type":"sons"
-	},
-	{
-		"filename":"sons/rabo_de_tatu_editado.wav",
-		"tags":["Rabo","tatu","toca","sinal","som","bicho"],
-		"type":"sons"
-	},
-	{
-		"filename":"sons/agua_da_bica2.wav",
-		"tags":["água", "natureza"],
-		"type":"sons"
-	},
-	{
-		"filename":"sons/flauta.wav",
-		"tags":["Flauta","música","sopro","toca","som","vento","eco","pássaro"],
-		"type":"sons"
-	},
-	{
-		"filename":"sons/sapos0.wav",
-		"tags":["sapo","som","bicho", "natureza", "mata"],
-		"type":"sons"
-	},
-	{
-		"filename":"sons/assobios.wav",
-		"tags":["natureza", "passarinho"],
-		"type":"sons"
-	},
-	{
-		"filename":"sons/palmas.wav",
-		"tags":["parabéns", "palmas"],
-		"type":"sons"
-	},
-	{
-		"filename":"toantes/antonio-tore-maraca.wav",
-		"tags":[ "Toante","Canto","canta","música","som","ritual","toré","cultura","tradição","ancestral","encantados","entoar"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/geo_significado_dos_cantos.wav",
-		"tags":["canto", "antepassados", "parente", "ancestralidade", "tradição"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/antonio-tore.wav",
-		"tags":[ "Toante","Canto","canta","maraca","música","som","ritual","toré","cultura","tradição","ancestral","encantados"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/manifestação-toré.wav",
-		"tags": ["Toré","manifestação", "canto", "luta"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/barbara-toante1.wav",
-		"tags":[ "Toante","Entoar","canto","meditação","sabedoria","ritual","profundo","conhecimento","interior","tempo","vai","vem","caboclo","ondas","reverberação","natureza","sublime","ancestral","voz","eco"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/menino_canto.wav",
-		"tags":[ "Toante","Criança, canto","alegria","brincadeira"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/barbara-toante3.wav",
-		"tags":[ "Toante","Canto","canta","maraca","música","som","ritual","toré","cultura","tradição","ancestral","encantados", "mulher"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/rosa-pe_do_cruzeiro.wav",
-		"tags":[ "Toré","canto","canta","conhecimento","ritual","voz","cultura","sabedoria","força", "cruzeiro"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/barbara-toate2.wav",
-		"tags":[ "Toante","Entoar","canto","meditação","sabedoria","ritual","profundo","conhecimento","interior","tempo","vai","vem","caboclo","ondas","reverberação","natureza","sublime","ancestral","voz","eco"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/rosa-toré_0.wav",
-		"tags":[ "Toré","canto","canta","conhecimento","ritual","voz","cultura","sabedoria","força"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/crianças_duo(tava na mata).wav",
-		"tags":[ "Toante","Criança, canto","alegria","brincadeira"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/rosa-toré_1.wav",
-		"tags":[ "Toré","canto","canta","conhecimento","ritual","voz","cultura","sabedoria","força"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/crianças_hey_a.wav",
-		"tags":[ "Toante","Criança, canto","alegria","brincadeira"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/rosa-toré_2.wav",
-		"tags":[ "Toré","canto","canta","conhecimento","ritual","voz","cultura","sabedoria","força"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/fernandão.wav",
-		"tags":[ "Toante","Chamado","entoar","sabedoria","ritual","profundo","conhecimento","ancestral","tradição","sabedoria","ritual"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/rosa-toré_3.wav",
-		"tags":[ "Toré","canto","canta","conhecimento","ritual","voz","cultura","sabedoria","força"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/geo-escola-canto.wav",
-		"tags":[ "Toante","Canto","maraca","cantar","voz","chamado","celebração","convoca","tradição","cultura","vida","eco"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/rosario-canto-juazeiro.wav",
-		"tags":["Canto","canta","voz","mulher","feminino","suave","água","andar"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/geo-escola-toante.wav",
-		"tags":[ "Toante","Canto","maraca","cantar","voz","chamado","celebração","convoca","tradição","cultura","vida","eco"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/rosario-canto-mulher-pankararu.wav",
-		"tags":["Canto","canta","voz","mulher","feminino","suave","água","andar", "guerreira"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/geo-escola-toante1.wav",
-		"tags":[ "Toante","canto","canto","aldeia","ritual","toante","maracá"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/rosario-canto-sereia.wav",
-		"tags":["Canto","canta","voz","mulher","feminino","suave","água","andar", "guerreira"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/geo-passarinho_qnd_canta.wav",
-		"tags":[ "Toante","Canto","maraca","cantar","voz","chamado","celebração","convoca","tradição","cultura","vida","eco", "passarinho"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/toante PANK _3.wav",
-		"tags":[],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/geo-toré_0.wav",
-		"tags":[ "Toante","Canto","maraca","cantar","voz","chamado","celebração","convoca","tradição","cultura","vida","eco"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/toante PANK_1.wav",
-		"tags":[ "Toante","canto","canto","aldeia","ritual","toante","maracá"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/geo-toré_1.wav",
-		"tags":[ "Toante","canto","canto","aldeia","ritual","toante","maracá"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/toante_PANK _2.wav",
-		"tags":[ "Toante","canto","canto","aldeia","ritual","toante","maracá"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/geo-toré_2.wav",
-		"tags":[ "Toante","Canto","maraca","cantar","voz","chamado","celebração","convoca","tradição","cultura","vida","eco"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/tres_rodas-2 .wav",
-		"tags":[ "Toante","canto","canto","aldeia","ritual","toante","maracá"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/geo-toré_3.wav",
-		"tags":[ "Toante","Canto","maraca","cantar","voz","chamado","celebração","convoca","tradição","cultura","vida","eco"],
-		"type":"toantes"
-	},
-	{
-		"filename":"toantes/tres_rodas.wav",
-		"tags":[ "Toante","canto","canto","aldeia","ritual","toante","maracá"],
-		"type":"toantes"
-	},
-	{
-		"filename":"declamações/antonio-poeta-filho-de-cana-brava.wav",
-		"tags": ["cana brava", "velho", "chico", "umbu", "tradição", "poesia", "sertão"],
-		"type":"declamações"
-	},
-	{
-		"filename":"declamações/cicero-todos_os_dias.wav",
-		"tags": [ "Todos","dia","praia","mar","brisa","paz","felicidade","vento","pensamento","estrela","esperança","encontro","amor","paixão","arte"],
-		"type":"declamações"
-	},
-	{
-		"filename":"declamações/cicero-sabedoria_anscestral.wav",
-		"tags": [ "Voz","beleza","sabedoria","segredo","ancestral","onça","lago","contar","cocar","danças","pajé","arte"],
-		"type":"declamações"
-	},
-	{
-		"filename":"declamações/geo-poema-cara-do-indio.wav",
-		"tags": ["cana brava", "velho", "chico", "umbu", "tradição", "poesia", "sertão"],
-		"type":"declamações"
-	}
+    {
+        "filename": "entrevistas/barbara-tecnologias.wav",
+        "lastPlayed": 1533203985.5338051,
+        "tags": [
+            "Tecnologias",
+            "ind\u00edgena",
+            "Direito",
+            "Mundo",
+            "Pankararu",
+            "Rituais",
+            "aprendizado"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/fernando-tirar-o-barro.wav",
+        "lastPlayed": 1533203991.1350021,
+        "tags": [
+            "Mulher",
+            "homem",
+            "barro",
+            "banho",
+            "cheiro",
+            "mata",
+            "erva",
+            "manjeric\u00e3o",
+            "cabe\u00e7a",
+            "Ritual",
+            "ci\u00eancia"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/barbara-tecnologias2.wav",
+        "lastPlayed": 1533203996.38324,
+        "tags": [
+            "Universidade",
+            "alunos, ind\u00edgena",
+            "cacique",
+            "\u00edndio",
+            "Prai\u00e1s",
+            "Tor\u00e9",
+            "sagrado",
+            "Tupinamb\u00e1",
+            "Terreiro"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/mercinha_levaram_para_a_Italia_t.wav",
+        "lastPlayed": 1533204157.562505,
+        "tags": [
+            "Fruta",
+            "farinha",
+            "caf\u00e9",
+            "a\u00e7ucar",
+            "entalha",
+            "bichos",
+            "alimenta\u00e7\u00e3o",
+            "planta\u00e7\u00e3o",
+            "natureza",
+            "cer\u00e2mica"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/fernando-ceramica.wav",
+        "lastPlayed": 1533203767.411728,
+        "tags": [
+            "Cer\u00e2mica",
+            "cultura",
+            "antepassados",
+            "sustentabilidade",
+            "barro",
+            "Tacaratu",
+            "Bahia",
+            "Aldeia",
+            "Ritual",
+            "Encantado",
+            "alimento"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/mercinha_melhor_pec\u0327a_que_t.wav",
+        "lastPlayed": 1533204194.859616,
+        "tags": [
+            "Inverno",
+            "trabalho",
+            "cer\u00e2mica"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/fernando-disputa-posseiros.wav",
+        "lastPlayed": 1533204208.414704,
+        "tags": [
+            "Terra",
+            "Pankararu",
+            "antropologia",
+            "persegui\u00e7\u00e3o",
+            "massacre",
+            "etnia",
+            "Rio",
+            "sofrido",
+            "pesca",
+            "l\u00edngua"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/mercinha_mensagem_pote_t.wav",
+        "lastPlayed": 1533203656.808684,
+        "tags": [
+            "Povo",
+            "famil\u00eda",
+            "S\u00e3o Paulo",
+            "mundo",
+            "Prazer",
+            "uni\u00e3o",
+            "irm\u00e3o",
+            "irm\u00e3",
+            "parente",
+            "m\u00e3e",
+            "Brasil"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/fernando-parteiras.wav",
+        "lastPlayed": 1533204221.6589298,
+        "tags": [
+            "F\u00e9",
+            "cura",
+            "agradecimento",
+            "menino do Rancho",
+            "Deus",
+            "ervas",
+            "menino",
+            "menina",
+            "parto",
+            "encantado",
+            "sa\u00fade",
+            "saud\u00e1vel"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/mercinha_sempre_uma_boa _T+.wav",
+        "lastPlayed": 1533203646.8923478,
+        "tags": [
+            "Trabalho",
+            "cer\u00e2mica",
+            "barro",
+            "fazer",
+            "hist\u00f3ria"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/fernando-problema-da-terra.wav",
+        "lastPlayed": 1533204285.2049038,
+        "tags": [
+            "Terra",
+            "Pankararu",
+            "antropologia",
+            "persegui\u00e7\u00e3o",
+            "massacre",
+            "etnia",
+            "Rio",
+            "sofrido",
+            "pesca",
+            "l\u00edngua"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/rosa-entrevista-deligencia.wav",
+        "lastPlayed": 1533204302.099094,
+        "tags": [
+            "Hospital",
+            "doen\u00e7a",
+            "reza",
+            "conhecimento",
+            "burocracia"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/fernando-sobre-toantes.wav",
+        "lastPlayed": 1533204331.2152781,
+        "tags": [
+            "Toante",
+            "letra",
+            "antepassados",
+            "famil\u00eda",
+            "tradi\u00e7\u00e3o",
+            "encantado",
+            "mem\u00f3ria"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "entrevistas/rosa-entrevista-rezo.wav",
+        "lastPlayed": 1533204376.2327092,
+        "tags": [
+            "Rezo",
+            "rezadeira",
+            "cura",
+            "f\u00e9",
+            "tradi\u00e7\u00e3o"
+        ],
+        "type": "entrevistas"
+    },
+    {
+        "filename": "falas/aei.wav",
+        "lastPlayed": 1533204407.626282,
+        "tags": [
+            "al\u00f4"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "falas/geo-pote_me_respode.wav",
+        "lastPlayed": 1533204416.554378,
+        "tags": [
+            "Oi",
+            "som",
+            "resposta",
+            "responde",
+            "pote"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "falas/alo-ok-oi.wav",
+        "lastPlayed": 1533219893.172161,
+        "tags": [
+            "al\u00f4"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "falas/geo-vocabulario.wav",
+        "lastPlayed": 1533204525.677227,
+        "tags": [
+            "Mulher",
+            "homem",
+            "mo\u00e7a",
+            "pai",
+            "boa noite",
+            "Pankararu",
+            "aprender",
+            "ensina"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "falas/alo-voz-feminina.wav",
+        "lastPlayed": 1533220778.201628,
+        "tags": [
+            "al\u00f4"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "falas/geo-vocabulario2.wav",
+        "lastPlayed": 1533212935.4882638,
+        "tags": [
+            "Lingua",
+            "ind\u00edgena",
+            "voz",
+            "escuta",
+            "mem\u00f3ria",
+            "cultura",
+            "aprender",
+            "ensina"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "falas/antonio-reverberacao.wav",
+        "lastPlayed": 1533213050.211765,
+        "tags": [
+            "reverbera\u00e7\u00e3o"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "falas/manifestac\u0327a\u0303o-discurso-terra 23.34.13.wav",
+        "lastPlayed": 1533213055.8024268,
+        "tags": [
+            "Rezo",
+            "rezadeira",
+            "cura",
+            "f\u00e9",
+            "tradi\u00e7\u00e3o"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "falas/eaipote.wav",
+        "lastPlayed": 1533213064.036438,
+        "tags": [
+            "e ai",
+            "pote",
+            "fala"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "falas/manifestac\u0327a\u0303o-fernando 23.34.13.wav",
+        "lastPlayed": 1533213074.6619232,
+        "tags": [
+            "Revindica\u00e7\u00e3o",
+            "povos ind\u00edgenas",
+            "direitos",
+            "antepassados",
+            "terra",
+            "luta",
+            "manisfesta\u00e7\u00e3o"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "falas/fernand\u00e3o-maraca.wav",
+        "lastPlayed": 1533213130.9305642,
+        "tags": [
+            "Maraca",
+            "toante",
+            "sabedoria",
+            "negro",
+            "ra\u00e7as",
+            "m\u00e3e terra"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "falas/sabedoria_ancestral.wav",
+        "lastPlayed": 1533203982.074869,
+        "tags": [
+            "Sabedoria",
+            "ancestral"
+        ],
+        "type": "falas"
+    },
+    {
+        "filename": "sons/agua_da_bica.wav",
+        "lastPlayed": 1533213155.4759839,
+        "tags": [
+            "\u00e1gua",
+            "natureza"
+        ],
+        "type": "sons"
+    },
+    {
+        "filename": "sons/cigarras.wav",
+        "lastPlayed": 1533213349.114897,
+        "tags": [
+            "natureza",
+            "noite",
+            "sil\u00eancio"
+        ],
+        "type": "sons"
+    },
+    {
+        "filename": "sons/rabo_de_tatu_editado.wav",
+        "lastPlayed": 1533213393.078502,
+        "tags": [
+            "Rabo",
+            "tatu",
+            "toca",
+            "sinal",
+            "som",
+            "bicho"
+        ],
+        "type": "sons"
+    },
+    {
+        "filename": "sons/agua_da_bica2.wav",
+        "lastPlayed": 1533213414.6660779,
+        "tags": [
+            "\u00e1gua",
+            "natureza"
+        ],
+        "type": "sons"
+    },
+    {
+        "filename": "sons/flauta.wav",
+        "lastPlayed": 1533213558.8898811,
+        "tags": [
+            "Flauta",
+            "m\u00fasica",
+            "sopro",
+            "toca",
+            "som",
+            "vento",
+            "eco",
+            "p\u00e1ssaro"
+        ],
+        "type": "sons"
+    },
+    {
+        "filename": "sons/sapos0.wav",
+        "lastPlayed": 1533213571.043627,
+        "tags": [
+            "sapo",
+            "som",
+            "bicho",
+            "natureza",
+            "mata"
+        ],
+        "type": "sons"
+    },
+    {
+        "filename": "sons/assobios.wav",
+        "lastPlayed": 1533214822.646795,
+        "tags": [
+            "natureza",
+            "passarinho"
+        ],
+        "type": "sons"
+    },
+    {
+        "filename": "sons/palmas.wav",
+        "lastPlayed": 1533217031.658805,
+        "tags": [
+            "parab\u00e9ns",
+            "palmas"
+        ],
+        "type": "sons"
+    },
+    {
+        "filename": "toantes/antonio-tore-maraca.wav",
+        "lastPlayed": 1533217045.632982,
+        "tags": [
+            "Toante",
+            "Canto",
+            "canta",
+            "m\u00fasica",
+            "som",
+            "ritual",
+            "tor\u00e9",
+            "cultura",
+            "tradi\u00e7\u00e3o",
+            "ancestral",
+            "encantados",
+            "entoar"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/geo_significado_dos_cantos.wav",
+        "lastPlayed": 1533217148.3052511,
+        "tags": [
+            "canto",
+            "antepassados",
+            "parente",
+            "ancestralidade",
+            "tradi\u00e7\u00e3o"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/antonio-tore.wav",
+        "lastPlayed": 1533217224.9079292,
+        "tags": [
+            "Toante",
+            "Canto",
+            "canta",
+            "maraca",
+            "m\u00fasica",
+            "som",
+            "ritual",
+            "tor\u00e9",
+            "cultura",
+            "tradi\u00e7\u00e3o",
+            "ancestral",
+            "encantados"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/manifestac\u0327a\u0303o-tore\u0301.wav",
+        "lastPlayed": 1533219075.713084,
+        "tags": [
+            "Tor\u00e9",
+            "manifesta\u00e7\u00e3o",
+            "canto",
+            "luta"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/barbara-toante1.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Entoar",
+            "canto",
+            "medita\u00e7\u00e3o",
+            "sabedoria",
+            "ritual",
+            "profundo",
+            "conhecimento",
+            "interior",
+            "tempo",
+            "vai",
+            "vem",
+            "caboclo",
+            "ondas",
+            "reverbera\u00e7\u00e3o",
+            "natureza",
+            "sublime",
+            "ancestral",
+            "voz",
+            "eco"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/menino_canto.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Crian\u00e7a, canto",
+            "alegria",
+            "brincadeira"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/barbara-toante3.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Canto",
+            "canta",
+            "maraca",
+            "m\u00fasica",
+            "som",
+            "ritual",
+            "tor\u00e9",
+            "cultura",
+            "tradi\u00e7\u00e3o",
+            "ancestral",
+            "encantados",
+            "mulher"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/rosa-pe_do_cruzeiro.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Tor\u00e9",
+            "canto",
+            "canta",
+            "conhecimento",
+            "ritual",
+            "voz",
+            "cultura",
+            "sabedoria",
+            "for\u00e7a",
+            "cruzeiro"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/barbara-toate2.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Entoar",
+            "canto",
+            "medita\u00e7\u00e3o",
+            "sabedoria",
+            "ritual",
+            "profundo",
+            "conhecimento",
+            "interior",
+            "tempo",
+            "vai",
+            "vem",
+            "caboclo",
+            "ondas",
+            "reverbera\u00e7\u00e3o",
+            "natureza",
+            "sublime",
+            "ancestral",
+            "voz",
+            "eco"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/rosa-tor\u00e9_0.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Tor\u00e9",
+            "canto",
+            "canta",
+            "conhecimento",
+            "ritual",
+            "voz",
+            "cultura",
+            "sabedoria",
+            "for\u00e7a"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/crian\u00e7as_duo(tava na mata).wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Crian\u00e7a, canto",
+            "alegria",
+            "brincadeira"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/rosa-tor\u00e9_1.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Tor\u00e9",
+            "canto",
+            "canta",
+            "conhecimento",
+            "ritual",
+            "voz",
+            "cultura",
+            "sabedoria",
+            "for\u00e7a"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/crian\u00e7as_hey_a.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Crian\u00e7a, canto",
+            "alegria",
+            "brincadeira"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/rosa-tor\u00e9_2.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Tor\u00e9",
+            "canto",
+            "canta",
+            "conhecimento",
+            "ritual",
+            "voz",
+            "cultura",
+            "sabedoria",
+            "for\u00e7a"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/fernand\u00e3o.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Chamado",
+            "entoar",
+            "sabedoria",
+            "ritual",
+            "profundo",
+            "conhecimento",
+            "ancestral",
+            "tradi\u00e7\u00e3o",
+            "sabedoria",
+            "ritual"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/rosa-tor\u00e9_3.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Tor\u00e9",
+            "canto",
+            "canta",
+            "conhecimento",
+            "ritual",
+            "voz",
+            "cultura",
+            "sabedoria",
+            "for\u00e7a"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/geo-escola-canto.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Canto",
+            "maraca",
+            "cantar",
+            "voz",
+            "chamado",
+            "celebra\u00e7\u00e3o",
+            "convoca",
+            "tradi\u00e7\u00e3o",
+            "cultura",
+            "vida",
+            "eco"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/rosario-canto-juazeiro.wav",
+        "lastPlayed": 1533203908.403121,
+        "tags": [
+            "Canto",
+            "canta",
+            "voz",
+            "mulher",
+            "feminino",
+            "suave",
+            "\u00e1gua",
+            "andar"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/geo-escola-toante.wav",
+        "lastPlayed": 1533203725.7617228,
+        "tags": [
+            "Toante",
+            "Canto",
+            "maraca",
+            "cantar",
+            "voz",
+            "chamado",
+            "celebra\u00e7\u00e3o",
+            "convoca",
+            "tradi\u00e7\u00e3o",
+            "cultura",
+            "vida",
+            "eco"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/rosario-canto-mulher-pankararu.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Canto",
+            "canta",
+            "voz",
+            "mulher",
+            "feminino",
+            "suave",
+            "\u00e1gua",
+            "andar",
+            "guerreira"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/geo-escola-toante1.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "canto",
+            "canto",
+            "aldeia",
+            "ritual",
+            "toante",
+            "marac\u00e1"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/rosario-canto-sereia.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Canto",
+            "canta",
+            "voz",
+            "mulher",
+            "feminino",
+            "suave",
+            "\u00e1gua",
+            "andar",
+            "guerreira"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/geo-passarinho_qnd_canta.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Canto",
+            "maraca",
+            "cantar",
+            "voz",
+            "chamado",
+            "celebra\u00e7\u00e3o",
+            "convoca",
+            "tradi\u00e7\u00e3o",
+            "cultura",
+            "vida",
+            "eco",
+            "passarinho"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/toante PANK _3.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/geo-tor\u00e9_0.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Canto",
+            "maraca",
+            "cantar",
+            "voz",
+            "chamado",
+            "celebra\u00e7\u00e3o",
+            "convoca",
+            "tradi\u00e7\u00e3o",
+            "cultura",
+            "vida",
+            "eco"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/toante PANK_1.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "canto",
+            "canto",
+            "aldeia",
+            "ritual",
+            "toante",
+            "marac\u00e1"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/geo-tor\u00e9_1.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "canto",
+            "canto",
+            "aldeia",
+            "ritual",
+            "toante",
+            "marac\u00e1"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/toante_PANK _2.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "canto",
+            "canto",
+            "aldeia",
+            "ritual",
+            "toante",
+            "marac\u00e1"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/geo-tor\u00e9_2.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Canto",
+            "maraca",
+            "cantar",
+            "voz",
+            "chamado",
+            "celebra\u00e7\u00e3o",
+            "convoca",
+            "tradi\u00e7\u00e3o",
+            "cultura",
+            "vida",
+            "eco"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/tres_rodas-2 .wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "canto",
+            "canto",
+            "aldeia",
+            "ritual",
+            "toante",
+            "marac\u00e1"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/geo-tor\u00e9_3.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "Canto",
+            "maraca",
+            "cantar",
+            "voz",
+            "chamado",
+            "celebra\u00e7\u00e3o",
+            "convoca",
+            "tradi\u00e7\u00e3o",
+            "cultura",
+            "vida",
+            "eco"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "toantes/tres_rodas.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Toante",
+            "canto",
+            "canto",
+            "aldeia",
+            "ritual",
+            "toante",
+            "marac\u00e1"
+        ],
+        "type": "toantes"
+    },
+    {
+        "filename": "declama\u00e7\u00f5es/antonio-poeta-filho-de-cana-brava.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "cana brava",
+            "velho",
+            "chico",
+            "umbu",
+            "tradi\u00e7\u00e3o",
+            "poesia",
+            "sert\u00e3o"
+        ],
+        "type": "declama\u00e7\u00f5es"
+    },
+    {
+        "filename": "declama\u00e7\u00f5es/cicero-todos_os_dias.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Todos",
+            "dia",
+            "praia",
+            "mar",
+            "brisa",
+            "paz",
+            "felicidade",
+            "vento",
+            "pensamento",
+            "estrela",
+            "esperan\u00e7a",
+            "encontro",
+            "amor",
+            "paix\u00e3o",
+            "arte"
+        ],
+        "type": "declama\u00e7\u00f5es"
+    },
+    {
+        "filename": "declama\u00e7\u00f5es/cicero-sabedoria_anscestral.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "Voz",
+            "beleza",
+            "sabedoria",
+            "segredo",
+            "ancestral",
+            "on\u00e7a",
+            "lago",
+            "contar",
+            "cocar",
+            "dan\u00e7as",
+            "paj\u00e9",
+            "arte"
+        ],
+        "type": "declama\u00e7\u00f5es"
+    },
+    {
+        "filename": "declama\u00e7\u00f5es/geo-poema-cara-do-indio.wav",
+        "lastPlayed": 0,
+        "tags": [
+            "cana brava",
+            "velho",
+            "chico",
+            "umbu",
+            "tradi\u00e7\u00e3o",
+            "poesia",
+            "sert\u00e3o"
+        ],
+        "type": "declama\u00e7\u00f5es"
+    }
 ]
-
-
-
-
-
-
