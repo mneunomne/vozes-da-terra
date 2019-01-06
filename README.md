@@ -1,5 +1,14 @@
 # Vozes da Terra
 
+## Comandos
+Play random
+```
+python3 vozesdaterra.py -m "random"
+```
+Gravação eco
+```
+python3 vozesdaterra.py -m "echo"
+```
 ## TO DO 
 
 - Resolver problema da gravação só poder durar 1:30 minutos
