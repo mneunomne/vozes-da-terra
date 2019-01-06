@@ -70,7 +70,7 @@ parser.add_argument("-a", "--audio_folder", dest="audio_folder",
                      default='pankararu/', help="local folder where files are saved")
 
 # modos de funcionamento
-parser.add_argument("-M", "--modo", dest="modo",
+parser.add_argument("-m", "--modo", dest="modo",
                     help="Modo de funcionamento", default="random")
 
 args = parser.parse_args()
@@ -80,7 +80,7 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 2
 CHUNK = 1024
 chunk = CHUNK
-#GUI = False
+GUI = False
 
 time_last_played = 0
 last_played_type = " "
@@ -162,7 +162,7 @@ try:
 
    if TRANSCRIPTION:
       # LOAD RECOGNIZER
-      recognizer = sr.Recognizer("pt-BR")     
+      recognizer = sr.Recognizer(800, "pt-BR")     
       # nltk vars
       stop_words = nltk.corpus.stopwords.words('portuguese')
       stemmer = nltk.stem.RSLPStemmer()           
@@ -269,9 +269,19 @@ try:
          thread(upload, [filename, audio_id])
 
    def listen(a, b):
-      with sr.Microphone() as source:
-         print("Say something!")
-         audio = recognizer.listen(source, 5)
+      try:
+         with sr.Microphone() as source:
+            ## recognizer.adjust_for_ambient_noise(source, duration = 1)
+            print("Started listening!")
+            try:
+               audio = recognizer.listen(source, 10)
+            except TimeoutError: 
+               print('time exceded')
+               playrandom()
+               return
+      except:
+         time.sleep(1)
+         listen(0,0)
       try:
          print('-------------------')                   
          print('recognizing text...')
@@ -416,17 +426,19 @@ try:
       return sound.apply_gain(change_in_dBFS)
 
    def get_file_from_list(words = []):
-      _last_played_type = last_played_type
+      #_last_played_type = last_played_type
       with open(DATA_FILE_PATH) as f :
          data = json.load(f)
          print('len', len(data))         
          if len(words) == 0:                     
             min_ = min(data, key=lambda x: x["lastPlayed"]) 
-            while min_["type"] == _last_played_type:
-               min_ = min(data, key=lambda x: x["lastPlayed"])             
-            print("type", min_["type"])                              
-            _last_played_type = min_["type"]
-            return min_
+            r = random.choice(data)
+            #while min_["type"] == _last_played_type:
+            #   min_ = min(data, key=lambda x: x["lastPlayed"])             
+            #print("type", min_["type"], _last_played_type)                              
+            #_last_played_type = min_["type"]
+            #return min_
+            return r
          else:            
             found_list = []
             hasFound = False                           

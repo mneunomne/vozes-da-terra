@@ -9,7 +9,8 @@
             "Mundo",
             "Pankararu",
             "Rituais",
-            "aprendizado"
+            "aprendizado",
+            "saber"
         ],
         "type": "entrevistas"
     },
@@ -17,9 +18,10 @@
         "filename": "entrevistas/fernando-tirar-o-barro.wav",
         "lastPlayed": 1533203991.1350021,
         "tags": [
-            "Mulher",
             "homem",
             "barro",
+            "terra",
+            "humor",
             "banho",
             "cheiro",
             "mata",
@@ -33,29 +35,33 @@
     },
     {
         "filename": "entrevistas/barbara-tecnologias2.wav",
-        "lastPlayed": 1533203996.38324,
+        "lastPlayed": 1533480474.911365,
         "tags": [
             "Universidade",
             "alunos, ind\u00edgena",
             "cacique",
             "\u00edndio",
             "Prai\u00e1s",
-            "Tor\u00e9",
+            "Tore",
             "sagrado",
             "Tupinamb\u00e1",
-            "Terreiro"
+            "Terreiro",
+            "Tecnologia",
+            "Tecnologias",
+            "eletr\u00f4nica"
         ],
         "type": "entrevistas"
     },
     {
         "filename": "entrevistas/mercinha_levaram_para_a_Italia_t.wav",
-        "lastPlayed": 1533204157.562505,
+        "lastPlayed": 1533481013.630982,
         "tags": [
             "Fruta",
             "farinha",
-            "caf\u00e9",
+            "cafe",
             "a\u00e7ucar",
             "entalha",
+            "orgulho",
             "bichos",
             "alimenta\u00e7\u00e3o",
             "planta\u00e7\u00e3o",
@@ -78,16 +84,26 @@
             "Aldeia",
             "Ritual",
             "Encantado",
+            "barro",
+            "arte",
+            "artezanato",
+            "artes\u00e3",
             "alimento"
         ],
         "type": "entrevistas"
     },
     {
-        "filename": "entrevistas/mercinha_melhor_pec\u0327a_que_t.wav",
+        "filename": "entrevistas/mercinha_melhor_peca_que_t.wav",
         "lastPlayed": 1533204194.859616,
         "tags": [
             "Inverno",
             "trabalho",
+            "orgulho",
+            "anci\u00e3",
+            "ensinamento",
+            "visibilidade",
+            "artista",
+            "arte",
             "cer\u00e2mica"
         ],
         "type": "entrevistas"
@@ -102,6 +118,7 @@
             "persegui\u00e7\u00e3o",
             "massacre",
             "etnia",
+            "luta",
             "Rio",
             "sofrido",
             "pesca",
@@ -117,6 +134,10 @@
             "famil\u00eda",
             "S\u00e3o Paulo",
             "mundo",
+            "fam\u00edlia",
+            "amor",
+            "artista",
+            "autoria",
             "Prazer",
             "uni\u00e3o",
             "irm\u00e3o",
@@ -131,12 +152,16 @@
         "filename": "entrevistas/fernando-parteiras.wav",
         "lastPlayed": 1533204221.6589298,
         "tags": [
-            "F\u00e9",
+            "Fe",
             "cura",
             "agradecimento",
             "menino do Rancho",
             "Deus",
             "ervas",
+            "medicima",
+            "tradi\u00e7\u00e3o",
+            "parteira",
+            "nascimento",
             "menino",
             "menina",
             "parto",
@@ -147,13 +172,17 @@
         "type": "entrevistas"
     },
     {
-        "filename": "entrevistas/mercinha_sempre_uma_boa _T+.wav",
+        "filename": "entrevistas/mercinha_sempreuma_boa_T+.wav",
         "lastPlayed": 1533203646.8923478,
         "tags": [
             "Trabalho",
             "cer\u00e2mica",
             "barro",
             "fazer",
+            "alegria",
+            "meio",
+            "artista",
+            "artezanato",
             "hist\u00f3ria"
         ],
         "type": "entrevistas"
@@ -182,6 +211,10 @@
             "Hospital",
             "doen\u00e7a",
             "reza",
+            "medicina",
+            "cura",
+            "curandeira",
+            "sa\u00fade",
             "conhecimento",
             "burocracia"
         ],
@@ -203,12 +236,15 @@
     },
     {
         "filename": "entrevistas/rosa-entrevista-rezo.wav",
-        "lastPlayed": 1533204376.2327092,
+        "lastPlayed": 1533480581.792618,
         "tags": [
             "Rezo",
+            "medicina",
+            "conhecimento",
+            "saber",
             "rezadeira",
             "cura",
-            "f\u00e9",
+            "fe",
             "tradi\u00e7\u00e3o"
         ],
         "type": "entrevistas"
@@ -235,7 +271,7 @@
     },
     {
         "filename": "falas/alo-ok-oi.wav",
-        "lastPlayed": 1533219893.172161,
+        "lastPlayed": 1533480569.4970722,
         "tags": [
             "al\u00f4"
         ],
@@ -258,7 +294,7 @@
     },
     {
         "filename": "falas/alo-voz-feminina.wav",
-        "lastPlayed": 1533220778.201628,
+        "lastPlayed": 1536024656.591424,
         "tags": [
             "al\u00f4"
         ],
@@ -288,13 +324,13 @@
         "type": "falas"
     },
     {
-        "filename": "falas/manifestac\u0327a\u0303o-discurso-terra 23.34.13.wav",
+        "filename": "falas/manifestacao-discurso-terra 23.34.13.wav",
         "lastPlayed": 1533213055.8024268,
         "tags": [
             "Rezo",
             "rezadeira",
             "cura",
-            "f\u00e9",
+            "fe",
             "tradi\u00e7\u00e3o"
         ],
         "type": "falas"
@@ -310,7 +346,7 @@
         "type": "falas"
     },
     {
-        "filename": "falas/manifestac\u0327a\u0303o-fernando 23.34.13.wav",
+        "filename": "falas/manifestacao-fernando 23.34.13.wav",
         "lastPlayed": 1533213074.6619232,
         "tags": [
             "Revindica\u00e7\u00e3o",
@@ -324,7 +360,7 @@
         "type": "falas"
     },
     {
-        "filename": "falas/fernand\u00e3o-maraca.wav",
+        "filename": "falas/fernandao-maraca.wav",
         "lastPlayed": 1533213130.9305642,
         "tags": [
             "Maraca",
@@ -426,7 +462,7 @@
         "filename": "sons/palmas.wav",
         "lastPlayed": 1533217031.658805,
         "tags": [
-            "parab\u00e9ns",
+            "parabens",
             "palmas"
         ],
         "type": "sons"
@@ -441,7 +477,7 @@
             "m\u00fasica",
             "som",
             "ritual",
-            "tor\u00e9",
+            "tore",
             "cultura",
             "tradi\u00e7\u00e3o",
             "ancestral",
@@ -473,7 +509,7 @@
             "m\u00fasica",
             "som",
             "ritual",
-            "tor\u00e9",
+            "tore",
             "cultura",
             "tradi\u00e7\u00e3o",
             "ancestral",
@@ -482,10 +518,10 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/manifestac\u0327a\u0303o-tore\u0301.wav",
+        "filename": "toantes/manifestacao-tore.wav",
         "lastPlayed": 1533219075.713084,
         "tags": [
-            "Tor\u00e9",
+            "Tore",
             "manifesta\u00e7\u00e3o",
             "canto",
             "luta"
@@ -494,7 +530,7 @@
     },
     {
         "filename": "toantes/barbara-toante1.wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1533222075.922595,
         "tags": [
             "Toante",
             "Entoar",
@@ -521,7 +557,7 @@
     },
     {
         "filename": "toantes/menino_canto.wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1533479475.308178,
         "tags": [
             "Toante",
             "Crian\u00e7a, canto",
@@ -532,7 +568,7 @@
     },
     {
         "filename": "toantes/barbara-toante3.wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1533479496.254912,
         "tags": [
             "Toante",
             "Canto",
@@ -541,7 +577,7 @@
             "m\u00fasica",
             "som",
             "ritual",
-            "tor\u00e9",
+            "tore",
             "cultura",
             "tradi\u00e7\u00e3o",
             "ancestral",
@@ -552,9 +588,9 @@
     },
     {
         "filename": "toantes/rosa-pe_do_cruzeiro.wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1533479607.668146,
         "tags": [
-            "Tor\u00e9",
+            "Tore",
             "canto",
             "canta",
             "conhecimento",
@@ -569,7 +605,7 @@
     },
     {
         "filename": "toantes/barbara-toate2.wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1533479779.5689359,
         "tags": [
             "Toante",
             "Entoar",
@@ -595,10 +631,10 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/rosa-tor\u00e9_0.wav",
-        "lastPlayed": 0,
+        "filename": "toantes/rosa-tore_0.wav",
+        "lastPlayed": 1533479887.9732878,
         "tags": [
-            "Tor\u00e9",
+            "Tore",
             "canto",
             "canta",
             "conhecimento",
@@ -611,8 +647,8 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/crian\u00e7as_duo(tava na mata).wav",
-        "lastPlayed": 0,
+        "filename": "toantes/criancas_duo(tava na mata).wav",
+        "lastPlayed": 1533480079.1404421,
         "tags": [
             "Toante",
             "Crian\u00e7a, canto",
@@ -622,10 +658,10 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/rosa-tor\u00e9_1.wav",
-        "lastPlayed": 0,
+        "filename": "toantes/rosa-tore_1.wav",
+        "lastPlayed": 1533480128.529977,
         "tags": [
-            "Tor\u00e9",
+            "Tore",
             "canto",
             "canta",
             "conhecimento",
@@ -638,8 +674,8 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/crian\u00e7as_hey_a.wav",
-        "lastPlayed": 0,
+        "filename": "toantes/criancas_hey_a.wav",
+        "lastPlayed": 1533480160.949973,
         "tags": [
             "Toante",
             "Crian\u00e7a, canto",
@@ -649,10 +685,10 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/rosa-tor\u00e9_2.wav",
-        "lastPlayed": 0,
+        "filename": "toantes/rosa-tore_2.wav",
+        "lastPlayed": 1533480169.9375942,
         "tags": [
-            "Tor\u00e9",
+            "Tore",
             "canto",
             "canta",
             "conhecimento",
@@ -665,8 +701,8 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/fernand\u00e3o.wav",
-        "lastPlayed": 0,
+        "filename": "toantes/fernandao.wav",
+        "lastPlayed": 1533480212.248518,
         "tags": [
             "Toante",
             "Chamado",
@@ -683,10 +719,10 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/rosa-tor\u00e9_3.wav",
-        "lastPlayed": 0,
+        "filename": "toantes/rosa-tore_3.wav",
+        "lastPlayed": 1533480259.502082,
         "tags": [
-            "Tor\u00e9",
+            "Tore",
             "canto",
             "canta",
             "conhecimento",
@@ -700,7 +736,7 @@
     },
     {
         "filename": "toantes/geo-escola-canto.wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1533480285.165421,
         "tags": [
             "Toante",
             "Canto",
@@ -753,7 +789,7 @@
     },
     {
         "filename": "toantes/rosario-canto-mulher-pankararu.wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1536024980.0787241,
         "tags": [
             "Canto",
             "canta",
@@ -769,7 +805,7 @@
     },
     {
         "filename": "toantes/geo-escola-toante1.wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1533480355.546178,
         "tags": [
             "Toante",
             "canto",
@@ -783,7 +819,7 @@
     },
     {
         "filename": "toantes/rosario-canto-sereia.wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1533480378.7745888,
         "tags": [
             "Canto",
             "canta",
@@ -799,7 +835,7 @@
     },
     {
         "filename": "toantes/geo-passarinho_qnd_canta.wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1533480408.944868,
         "tags": [
             "Toante",
             "Canto",
@@ -824,7 +860,7 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/geo-tor\u00e9_0.wav",
+        "filename": "toantes/geo-tore_0.wav",
         "lastPlayed": 0,
         "tags": [
             "Toante",
@@ -857,7 +893,7 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/geo-tor\u00e9_1.wav",
+        "filename": "toantes/geo-tore_1.wav",
         "lastPlayed": 0,
         "tags": [
             "Toante",
@@ -872,7 +908,7 @@
     },
     {
         "filename": "toantes/toante_PANK _2.wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1533480770.2478259,
         "tags": [
             "Toante",
             "canto",
@@ -885,7 +921,7 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/geo-tor\u00e9_2.wav",
+        "filename": "toantes/geo-tore_2.wav",
         "lastPlayed": 0,
         "tags": [
             "Toante",
@@ -905,7 +941,7 @@
     },
     {
         "filename": "toantes/tres_rodas-2 .wav",
-        "lastPlayed": 0,
+        "lastPlayed": 1533480899.873481,
         "tags": [
             "Toante",
             "canto",
@@ -918,7 +954,7 @@
         "type": "toantes"
     },
     {
-        "filename": "toantes/geo-tor\u00e9_3.wav",
+        "filename": "toantes/geo-tore_3.wav",
         "lastPlayed": 0,
         "tags": [
             "Toante",
@@ -951,7 +987,7 @@
         "type": "toantes"
     },
     {
-        "filename": "declama\u00e7\u00f5es/antonio-poeta-filho-de-cana-brava.wav",
+        "filename": "declamacoes/antonio-poeta-filho-de-cana-brava.wav",
         "lastPlayed": 0,
         "tags": [
             "cana brava",
@@ -962,10 +998,10 @@
             "poesia",
             "sert\u00e3o"
         ],
-        "type": "declama\u00e7\u00f5es"
+        "type": "declamacoes"
     },
     {
-        "filename": "declama\u00e7\u00f5es/cicero-todos_os_dias.wav",
+        "filename": "declamacoes/cicero-todos_os_dias.wav",
         "lastPlayed": 0,
         "tags": [
             "Todos",
@@ -984,10 +1020,10 @@
             "paix\u00e3o",
             "arte"
         ],
-        "type": "declama\u00e7\u00f5es"
+        "type": "declamacoes"
     },
     {
-        "filename": "declama\u00e7\u00f5es/cicero-sabedoria_anscestral.wav",
+        "filename": "declamacoes/cicero-sabedoria_anscestral.wav",
         "lastPlayed": 0,
         "tags": [
             "Voz",
@@ -1000,13 +1036,13 @@
             "contar",
             "cocar",
             "dan\u00e7as",
-            "paj\u00e9",
+            "paje",
             "arte"
         ],
-        "type": "declama\u00e7\u00f5es"
+        "type": "declamacoes"
     },
     {
-        "filename": "declama\u00e7\u00f5es/geo-poema-cara-do-indio.wav",
+        "filename": "declamacoes/geo-poema-cara-do-indio.wav",
         "lastPlayed": 0,
         "tags": [
             "cana brava",
@@ -1017,6 +1053,216 @@
             "poesia",
             "sert\u00e3o"
         ],
-        "type": "declama\u00e7\u00f5es"
+        "type": "declamacoes"
+    },
+    {
+        "filename": "expo/caboclo-da-mata.wav",
+        "lastPlayed": 1533480448.0843809,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/carapoto-plak-o-cacique.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/carapoto-plak-o.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/clara.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/clara2.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/deus-na-aldeia-balanceou.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/deus-no-ceu-os-indio-na-terra.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/eu-so-xoco.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/eu-venho-do-mato.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/eu-vim-de-longe.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/ewerton.wav",
+        "lastPlayed": 1533480607.38951,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/geo-canarinho.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/geo-maracazinho.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/geo_heyo.wav",
+        "lastPlayed": 1533480512.128336,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/juninho-funi-o.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/juninho-funio-v2.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/juninho-trabaia.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/mangetxai-cabocla-de-pena.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/marina.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/oleaha.wav",
+        "lastPlayed": 1533480522.7838562,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/olhos-de-quixaba.wav",
+        "lastPlayed": 1533480751.488002,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/pankararu-coro.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/pataxo_mucamucau.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/pitoinha-acua.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/senhor-aleatorio.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/sovoz.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/tibirica-fogueira-santa.wav",
+        "lastPlayed": 1533480956.681416,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/tibirica-viva-jesus.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/tore-coro.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/vento-deu-na-jurema.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/vento-na-jurema.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/xoco-biciririte.wav",
+        "lastPlayed": 1533481097.229117,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/xoco-caninde.wav",
+        "lastPlayed": 1533480820.436506,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/xoco-coro.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
+    },
+    {
+        "filename": "expo/xoco-unknown.wav",
+        "lastPlayed": 0,
+        "tags": [],
+        "type": "toantes"
     }
 ]
